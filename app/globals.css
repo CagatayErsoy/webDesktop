@@ -2,26 +2,89 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+body{
+    background-image: 
+    
+    linear-gradient(
+   rgba(0, 128, 255, 0.45), 
+rgba(34, 255, 0, 0)
+    ),
+    /* your image */
+    url("../public/bg-images/10.jpeg");
+    background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-blend-mode: lighten;
+  background-size: cover;
+ 
+}
+/* rgba(0, 128, 255, 0.45), 
+rgba(0, 81, 255, 0.45) */
+
+/* rgba(0, 128, 255, 0.45), 
+rgba(34, 255, 0, 0) */
+
+
+::-webkit-scrollbar {
+  width: 15px;
+
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/* Track */
+::-webkit-scrollbar-track {
+  background: #BCD2FF;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/* Blink animation */
+.blink-cursor { 
+  
+  display: inline-block;
+
+
+  
+}
+
+.blink-cursor::after {
+  content: "";
+  
+ 
+  /* Remove display: inline-block if not required to be on the same line as text etc */
+  display: inline-block;
+  background-color: #606060;
+  vertical-align: top;
+  width: 5px;
+  font-size:18px;
+  /* Set height to the line height of .text */
+  height: 24px;
+  /* 
+  Animation paramaters:
+  blink = animation-name, 
+  1s = animation-duration, 
+  step-end = animation-timing-function,
+  infinite = animation-iteration-count
+  */
+  -webkit-animation: blink 1s step-end infinite;
+  animation: blink 1s step-end infinite;
+}
+
+@-webkit-keyframes blink {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@keyframes blink {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
 }
