@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useRef, useEffect, MutableRefObject } from "react";
-import Link from "next/link";
-import Icon from "../components/Icon"; // Make sure to adjust this import to the correct path of your Icon component
+
+import NavbarIcon from "../components/Icon"; // Make sure to adjust this import to the correct path of your Icon component
 import Clock from "../components/Clock";
 import { FaLinkedin } from "react-icons/fa";
-import { useRouter } from "next/navigation"; // Corrected the import for useRouter
+
 import icons from "../utilities/IconsData";
 import { FaFolder } from "react-icons/fa";
 
@@ -12,7 +12,6 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
 
-  const router = useRouter();
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     if (isMenuOpen) setIsSubMenuOpen(false);
@@ -20,9 +19,7 @@ export default function Navbar() {
   const toggleSubMenu = () => {
     setIsSubMenuOpen(!isSubMenuOpen);
   };
-  const handleDoubleClick = (url: string) => {
-    router.push(url);
-  };
+
   // #c0cade
   return (
     <nav className="bg-third w-full fixed bottom-0 h-12 flex items-center  ">
@@ -56,55 +53,25 @@ export default function Navbar() {
                 {Object.keys(icons).map((key) => {
                   const { label, src } = icons[key];
                   return (
-                    <div
-                      key={key}
-                      id={key}
-                      onDoubleClick={() => handleDoubleClick(`/?${key}`)}
-                      className="flex  justify-start items-center gap-2 p-2"
-                    >
-                      <div
-                        className="w-[2.5rem] h-[2.5rem]"
-                        style={{
-                          backgroundImage: `url(${src}) `,
-                          backgroundSize: "cover",
-                        }}
-                      ></div>
-
-                      <span className="text-main">{label}</span>
-                    </div>
+                  <NavbarIcon key={key} iconKey={key} src={src} label={label}/>
                   );
                 })}
               </div >
               {/* Submenu Trigger */}
-              <button onClick={toggleSubMenu} className="p-2  flex justify-start gap-2 ">
-              <span className="text-forth text-3xl"><FaFolder /></span>
-              <div>Others</div>
+              <button onClick={toggleSubMenu}   className="px-3 py-2 flex justify-start gap-2 items-center hover:bg-forth hover:text-secondary">
+              <span className="text-forth hover:text-inherit text-3xl"><FaFolder /></span>
+              <div className="px-2">Others</div>
               </button>
 
               {/* Submenu */}
               {isSubMenuOpen && (
-                <div className="absolute left-full bottom-12 bg-third flex flex-col gap-3 w-full">
-                  <Link href="/?snake">
-                    <div className="flex items-center gap-2 p-2 hover:bg-forth">
-                      <Icon src="/icons/snake.png" alt="snake" size={30} />
-                      snake.bat
-                    </div>
-                  </Link>
-                  <Link href="/?virus">
-                    <div className="flex items-center gap-2 p-2">
-                      <Icon src="/icons/alert1.png" alt="virus" size={30} />
-                      Virus.exe
-                    </div>
-                  </Link>
+                <div className="absolute left-full bottom-12 bg-third flex flex-col gap-3 w-full" onMouseLeave={toggleSubMenu}>
+                <NavbarIcon key="snake" iconKey="snake" src="/icons/snake.png" label="snake.exe"/>
+                <NavbarIcon key="virus" iconKey="virus" src="/icons/alert.png" label="virus.exe"/>
                 </div>
               )}
 
-              <Link href="/?terminal">
-                <div className="flex items-center gap-5 p-2 hover:bg-forth">
-                  <Icon src="/images/restart.png" alt="restart" size={30} />{" "}
-                  Restart
-                </div>
-              </Link>
+                <NavbarIcon key="Restart" iconKey="restart" src="/icons/restart.png" label="restart"/>
             </div>
           </div>
         )}
