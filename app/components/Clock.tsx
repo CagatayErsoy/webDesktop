@@ -20,7 +20,7 @@ const Clock: React.FC = () => {
 
   return (
     <div className='text-[#093973]'>
-      {currentTime.toLocaleTimeString()} Formats time as a string
+      {currentTime.toLocaleTimeString()} 
     </div>
   );
 };

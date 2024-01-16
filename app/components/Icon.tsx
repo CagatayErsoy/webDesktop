@@ -27,7 +27,7 @@ const NavbarIcon: React.FC<NavbarIconProps> = ({ iconKey, src, label }) => {
     <div
       id={iconKey}
       onDoubleClick={() => handleDoubleClick(iconKey)}
-      className="flex justify-start items-center gap-2 p-2 text-main hover:bg-forth hover:text-secondary "
+      className="flex justify-start items-center gap-2 p-2 text-main hover:bg-forth hover:text-secondary cursor-pointer"
     >
       <div
         className="w-[2.5rem] h-[2.5rem]"

@@ -1,9 +1,10 @@
 "use client";
-import React, { useState, useRef, useEffect, MutableRefObject } from "react";
+import React, { useState } from "react";
 
 import NavbarIcon from "../components/Icon"; // Make sure to adjust this import to the correct path of your Icon component
 import Clock from "../components/Clock";
 import { FaLinkedin } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
 
 import icons from "../utilities/IconsData";
 import { FaFolder } from "react-icons/fa";
@@ -30,7 +31,7 @@ export default function Navbar() {
         >
           Start
         </button>
-        <div className="flex gap-3 p-5">
+        <div className="flex gap-3 p-5 text-terminal_bg">
           <a
             href="https://www.linkedin.com/in/cagatay-ersoy/"
             className="text-xl"
@@ -38,8 +39,11 @@ export default function Navbar() {
             {" "}
             <FaLinkedin />
           </a>
+          
+          
 
           <Clock/>
+          <div className="flex items-center text-terminal_bg"><FaLocationDot/> SF</div>
         </div>
 
         {/* Dropdown Menu */}
@@ -58,9 +62,9 @@ export default function Navbar() {
                 })}
               </div >
               {/* Submenu Trigger */}
-              <button onClick={toggleSubMenu}   className="px-3 py-2 flex justify-start gap-2 items-center hover:bg-forth hover:text-secondary">
-              <span className="text-forth hover:text-inherit text-3xl"><FaFolder /></span>
-              <div className="px-2">Others</div>
+              <button onClick={toggleSubMenu}   className="px-3 py-2 flex justify-start gap-2 items-center hover:bg-forth group">
+              <span className="text-forth group-hover:text-main text-3xl"><FaFolder /></span>
+              <div className="px-2 text-main group-hover:text-secondary" >Others</div>
               </button>
 
               {/* Submenu */}
