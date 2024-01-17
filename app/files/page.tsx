@@ -16,8 +16,6 @@ export default function Files() {
   
   const borderRef = useRef<HTMLElement>(null);
   const{ setParentRef,setOpen,windows,addStack,removeStack,stack}=useGlobalContext()
-
-  const router = useRouter();
   
   const handleDoubleClick = (key:string) => {
     const cleanId = `${key}Window`;
