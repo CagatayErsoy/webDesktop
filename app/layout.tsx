@@ -22,11 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={myFont.className} style={{}}>
       <AppProvider>
-      <Navbar></Navbar>
-       
-        
-        <Files></Files>
-       
+      
         {children}
        
      
@@ -37,5 +33,3 @@ export default function RootLayout({
     </html>
   );
 }
-export const dynamic = 'force-dynamic'
-export const fetchCache = 'force-no-store';

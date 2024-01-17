@@ -5,14 +5,14 @@ import NavbarIcon from "../components/Icon"; // Make sure to adjust this import 
 import Clock from "../components/Clock";
 import { FaLinkedin } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-
+import { useGlobalContext } from "../Context/appcontext";
 import icons from "../utilities/IconsData";
 import { FaFolder } from "react-icons/fa";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
-
+  const {setIsLoading}=useGlobalContext()
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     if (isMenuOpen) setIsSubMenuOpen(false);
@@ -20,6 +20,9 @@ export default function Navbar() {
   const toggleSubMenu = () => {
     setIsSubMenuOpen(!isSubMenuOpen);
   };
+  const handleRestart=()=>{
+    setIsLoading(true)
+  }
 
   // #c0cade
   return (
@@ -74,8 +77,10 @@ export default function Navbar() {
                 <NavbarIcon key="virus" iconKey="virus" src="/icons/alert.png" label="virus.exe"/>
                 </div>
               )}
-
+                <button onClick={handleRestart}>
                 <NavbarIcon key="Restart" iconKey="restart" src="/icons/restart.png" label="restart"/>
+                </button>
+               
             </div>
           </div>
         )}

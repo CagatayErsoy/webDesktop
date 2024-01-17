@@ -16,7 +16,9 @@ interface AppContextValue {
   setParentRef: (node: RefObject<Element> | null) => void;
   addStack: (window:string) => void;
   removeStack: (window:string) => void;
-  stack:string[]
+  stack:string[];
+  isLoading:boolean;
+  setIsLoading:React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const AppContext = createContext<AppContextValue | undefined>(undefined);
@@ -28,6 +30,7 @@ interface AppProviderProps {
 const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [windows, setWindows] = useState<{ [key: string]: WindowProps }>(WindowData);
   const [stack, setStack]=useState<string[]>([])
+  const [isLoading,setIsLoading]=useState(true)
 
   const [refElement, setRefElement] = useState<RefObject<Element>  | null>(null);
 
@@ -89,7 +92,9 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         setParentRef,
         addStack,
         removeStack,
-        stack
+        stack,
+        setIsLoading,
+        isLoading
       }}
     >
       {children}
