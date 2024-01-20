@@ -15,7 +15,7 @@ const EnergyStarLogo: React.FC = () => {
             <div className='flex items-center justify-center'>  <span className={ brush.className}>energy </span> 
                 <AiOutlineStar /> </div>
                
-                <div className="text-lg text-center text-green-600  border-t border-green-600">ERSOY SOFTWARE DEVELOPMENT</div>
+                <div className="text-lg text-center text-green-600  border-t border-green-600">ERSOY SOFTWARE DEVELOPMENT LLC</div>
             </div>
         </div>
     );
