@@ -6,9 +6,9 @@ import { useGlobalContext } from "./Context/appcontext";
 import CompaqBoot from "./compaqBoot/page";
 CompaqBoot
 export default function Home() {
-  const {isLoading}=useGlobalContext()
-  return <>{isLoading?<CompaqBoot/> : <>
-    <Navbar></Navbar>
+  const {isBooting}=useGlobalContext()
+  return <>{isBooting?<CompaqBoot/> : <>
+   
        
         
        <Files></Files>

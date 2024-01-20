@@ -24,8 +24,8 @@ export default function RootLayout({
       <AppProvider>
       
         {children}
+        <Navbar></Navbar>
        
-     
       </AppProvider>
       
        

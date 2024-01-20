@@ -10,7 +10,7 @@ interface NavbarIconProps {
 const NavbarIcon: React.FC<NavbarIconProps> = ({ iconKey, src, label }) => {
   const { setOpen, windows, addStack, removeStack } = useGlobalContext();
 
-  const handleDoubleClick = (key: string) => {
+  const handleClick = (key: string) => {
     console.log(key)
     const cleanId = `${key}Window`;
 
@@ -26,7 +26,7 @@ const NavbarIcon: React.FC<NavbarIconProps> = ({ iconKey, src, label }) => {
   return (
     <div
       id={iconKey}
-      onDoubleClick={() => handleDoubleClick(iconKey)}
+      onClick={() => handleClick(iconKey)}
       className="flex justify-start items-center gap-2 p-2 text-main hover:bg-forth hover:text-secondary cursor-pointer"
     >
       <div

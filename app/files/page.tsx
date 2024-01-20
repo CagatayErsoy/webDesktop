@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation"; // Corrected the import for useRout
 import { useGlobalContext } from "../Context/appcontext";
 import { motion } from "framer-motion";
 import icons from "../utilities/IconsData";
+import Navbar from "../Navbar/page";
 
 
 export default function Files() {
@@ -54,7 +55,7 @@ export default function Files() {
       {Object.keys(icons).map((key) => {
         const {label, src } = icons[key];
         return (
-          <motion.div
+          <motion.div 
             key={key}
             id={key}
             drag
@@ -78,6 +79,7 @@ export default function Files() {
           </motion.div>
         );
       })}
+    
       </main>
     );
   }

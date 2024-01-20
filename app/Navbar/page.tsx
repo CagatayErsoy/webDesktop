@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import NavbarIcon from "../components/Icon"; // Make sure to adjust this import to the correct path of your Icon component
 import Clock from "../components/Clock";
@@ -9,10 +9,13 @@ import { useGlobalContext } from "../Context/appcontext";
 import icons from "../utilities/IconsData";
 import { FaFolder } from "react-icons/fa";
 
+
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
-  const {setIsLoading}=useGlobalContext()
+  const {setIsBooting,isBooting,windows,setWindows,closeAllWindows}=useGlobalContext()
+
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     if (isMenuOpen) setIsSubMenuOpen(false);
@@ -21,12 +24,22 @@ export default function Navbar() {
     setIsSubMenuOpen(!isSubMenuOpen);
   };
   const handleRestart=()=>{
-    setIsLoading(true)
+    setIsBooting(true)
+    setIsMenuOpen(false)
+    setIsSubMenuOpen(false)
+    closeAllWindows()
+    
   }
-
+  useEffect(()=>{
+    if(!isBooting){
+      setIsMenuOpen(false)
+      setIsSubMenuOpen(false)
+    }
+  },[isBooting])
   // #c0cade
   return (
-    <nav className="bg-third w-full fixed bottom-0 h-12 flex items-center  ">
+    !isBooting ?
+    <nav className="bg-third w-full fixed bottom-0 h-12 flex items-center z-[100]">
       <div className="flex items-center justify-between h-16  w-full ">
         <button
           onClick={toggleMenu}
@@ -52,10 +65,10 @@ export default function Navbar() {
         {/* Dropdown Menu */}
         {isMenuOpen && (
           <div
-            className="absolute bg-third shadow-md rounded-md  left-0 bottom-12 z-10 text-main w-1/6"
+            className="absolute bg-third shadow-md rounded-md  left-0 bottom-12  text-main w-1/6 z-[100]"
             onMouseLeave={() => setIsMenuOpen(false)}
           >
-            <div className="flex flex-col gap-3 text-center  divide-y divide-blue-200 ">
+            <div className="flex flex-col gap-3 text-center  divide-y divide-blue-200 z-[100]">
               <div className=" flex flex-col gap-2">
                 {Object.keys(icons).map((key) => {
                   const { label, src } = icons[key];
@@ -85,6 +98,6 @@ export default function Navbar() {
           </div>
         )}
       </div>
-    </nav>
+    </nav> :null
   );
 }

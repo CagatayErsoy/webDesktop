@@ -17,8 +17,9 @@ interface AppContextValue {
   addStack: (window:string) => void;
   removeStack: (window:string) => void;
   stack:string[];
-  isLoading:boolean;
-  setIsLoading:React.Dispatch<React.SetStateAction<boolean>>
+  isBooting:boolean;
+  setIsBooting:React.Dispatch<React.SetStateAction<boolean>>
+  closeAllWindows:()=>void
 }
 
 const AppContext = createContext<AppContextValue | undefined>(undefined);
@@ -30,7 +31,7 @@ interface AppProviderProps {
 const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [windows, setWindows] = useState<{ [key: string]: WindowProps }>(WindowData);
   const [stack, setStack]=useState<string[]>([])
-  const [isLoading,setIsLoading]=useState(true)
+  const [isBooting,setIsBooting]=useState(true)
 
   const [refElement, setRefElement] = useState<RefObject<Element>  | null>(null);
 
@@ -38,6 +39,7 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     setRefElement(node);
   };
 
+  
   const setOpen = (id: string, isOpen: boolean) => {
  
     setWindows((prevWindows) => ({
@@ -49,6 +51,15 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     }));
     
   };
+  const closeAllWindows=()=>{
+    const newWindows={...windows}
+    for(const key in windows){
+      if(newWindows.hasOwnProperty(key)){
+        newWindows[key].isOpen=false
+      }
+      
+    }}
+
   const addStack = (window:string) => {
     setStack((currentStack) => {
       // Check if the window is already at the front of the stack
@@ -93,8 +104,9 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
         addStack,
         removeStack,
         stack,
-        setIsLoading,
-        isLoading
+        setIsBooting,
+        isBooting,
+        closeAllWindows
       }}
     >
       {children}

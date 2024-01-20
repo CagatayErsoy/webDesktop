@@ -12,7 +12,7 @@ export default function Terminal() {
   const [output, setOutput] = useState<(string | JSX.Element|null)[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
-  const { windows } = useGlobalContext();
+  const { windows ,setIsBooting,closeAllWindows} = useGlobalContext();
   const [command, setCommand] = useState("");
   const [hash, setHash] = useState("#");
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +29,7 @@ export default function Terminal() {
 
   const rounded = useTransform(count, (latest) => Math.round(latest));
   const displayText = useTransform(rounded, (latest) =>
-    baseText.slice(0, latest)
+  baseText.slice(0, latest)
   );
   const outputRef = useRef<HTMLDivElement>(null);
 
@@ -75,7 +75,13 @@ export default function Terminal() {
     } else if (command === "clear") {
       setOutput([""]);
 
-    } 
+    } else if(command==='restart'){
+      
+      setIsBooting(true)
+     closeAllWindows()
+
+
+    }
     
     else if (command.startsWith("openai.ask:")) {
       const question = command.slice("openai.ask:".length).trim();
@@ -143,6 +149,13 @@ export default function Terminal() {
       setOutput(prev => [...prev, 'Loading']);
     }
   }, [isLoading]);
+  useEffect(()=>{
+    if(!windows.terminalWindow.isOpen){
+      setOutput([])
+    }
+
+  },
+  [windows])
   return (
     <Window
       windowWidth="70vw"
