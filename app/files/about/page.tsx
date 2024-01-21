@@ -17,7 +17,8 @@ export default function About() {
     >
       <section className="py-20  bg-[#093973]  flex flex-col justify-center text-[#093973] items-center">
         
-        <div className="bg-white  w-[793px] h-[1123] p-12 drop-shadow-2xl">
+      {/* <div className="absolute top-0 left-0 w-full h-full border-t-2 border-l-2 border-red-500 m"></div> */}
+        <div className="bg-white  w-[793px] h-[1123] p-12 drop-shadow-2xl page">
           <h2 className="text-xl font-bold">About Me</h2>
 
           <p>

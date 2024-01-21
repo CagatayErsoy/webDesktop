@@ -12,19 +12,19 @@ export default function Terminal() {
   const [output, setOutput] = useState<(string | JSX.Element|null)[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
-  const { windows ,setIsBooting,closeAllWindows} = useGlobalContext();
-  const [command, setCommand] = useState("");
+  const { windows ,setIsBooting,closeAllWindows,setOpen,addStack} = useGlobalContext();
+  const [command, setCommand] = useState<string>("");
   const [hash, setHash] = useState("#");
   const [isLoading, setIsLoading] = useState(false);
   const baseText =
     "Welcome to smallBash for webDesktop, type help for guidelines..." as string;
   const count = useMotionValue(0);
-  const commandsList = {
-    "about.txt": "?about",
-    "contact.mail": "/?contact",
-    "cv.txt": "/?cv",
-    "portfolio.bat": "/?portfolio",
-    "snake.app": "/?snake",
+  const commandsList:{[key:string]:string}= {
+    "about.txt": "aboutWindow",
+    "contact.mail": "contactWindow",
+    "cv.txt": "cvWindow",
+    "portfolio.bat": "portfolioWindow",
+    "snake.app": "snakeWindow",
   };
 
   const rounded = useTransform(count, (latest) => Math.round(latest));
@@ -69,7 +69,8 @@ export default function Terminal() {
       setOutput((prev) => [...prev, `C:/ ${command}`, fileListElement]);
     } else if (Object.keys(commandsList).includes(command.toLowerCase())) {
       setOutput((prev) => [...prev, `${command} Is loading`]);
-      router.push(commandsList[command as keyof typeof commandsList]);
+      setOpen(commandsList[command] , true)
+      addStack(commandsList[command])
     } else if (command === "help") {
       setOutput((prev) => [...prev, `C:/ ${command}`, helpElement]);
     } else if (command === "clear") {

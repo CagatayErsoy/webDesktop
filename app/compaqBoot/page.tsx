@@ -12,7 +12,7 @@ const CompaqBoot: React.FC = () => {
   const [showIdeInfo, setShowIdeInfo] = useState<boolean>(false);
   const [ideInfo, setIdeInfo] = useState<string[]>([]);
   const [ideInfoIndex, setIdeInfoIndex] = useState<number>(0);
-  const [OSScreen, setOSScreen]=useState(false)
+  const [OSScreen, setOSScreen] = useState(false);
   const maxMemory = 52420;
   const ideInfoText = [
     "Detecting IDE Primary Master...None",
@@ -27,31 +27,25 @@ const CompaqBoot: React.FC = () => {
   // // baseText.slice(0, latest))
   useEffect(() => {
     let ideInfoTimeout: ReturnType<typeof setInterval>;
-    if ( showIdeInfo) {
+    if (showIdeInfo) {
       ideInfoTimeout = setInterval(() => {
-       if( ideInfoIndex < ideInfoText.length ){
-        setIdeInfoIndex(ideInfoIndex + 1);
-        setIdeInfo(prev=> [...prev, ideInfoText[ideInfoIndex]])
-       }
-        else if(ideInfoIndex === ideInfoText.length ){
-          setOSScreen(true)
+        if (ideInfoIndex < ideInfoText.length) {
+          setIdeInfoIndex(ideInfoIndex + 1);
+          setIdeInfo((prev) => [...prev, ideInfoText[ideInfoIndex]]);
+        } else if (ideInfoIndex === ideInfoText.length) {
+          setOSScreen(true);
 
-         setTimeout(()=>{
-          setIsBooting(false)
-          },2000)
-         
+          setTimeout(() => {
+            setIsBooting(false);
+          }, 2000);
         }
-        
       }, 1000);
     }
-    
+
     return () => {
       clearInterval(ideInfoTimeout);
     };
-  }, [showIdeInfo,ideInfoIndex ]);
-
-
-
+  }, [showIdeInfo, ideInfoIndex]);
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
@@ -64,9 +58,7 @@ const CompaqBoot: React.FC = () => {
             clearInterval(interval);
             setShowAwardBios(true);
             setTimeout(() => {
-              setShowIdeInfo(true); // Show IDE info
-             
-              ; // Set loading to false once done
+              setShowIdeInfo(true); // Show IDE info // Set loading to false once done
             }, 1000); // Wait for 1 second before showing IDE info
           }
           return nextCount;
@@ -78,30 +70,36 @@ const CompaqBoot: React.FC = () => {
       clearInterval(interval);
     };
   }, [memoryCount, setIsBooting]);
-  
 
   const formatMemoryCount = (count: number): string => {
     return count.toString().padStart(7, "0");
   };
-  const animateDots = () => {
-    let dotString = "";
-    const maxDots = 5;
-    let currentDots = 0;
+  // const animateDots = () => {
+  //   let dotString = "";
+  //   const maxDots = 5;
+  //   let currentDots = 0;
 
-    const interval = setInterval(() => {
-      dotString = ".".repeat(currentDots);
-      setIdeInfo((prev) => [...prev.slice(0, -1), `${dotString}`]);
-      currentDots = (currentDots + 1) % (maxDots + 1);
-    }, 500);
+  //   const interval = setInterval(() => {
+  //     dotString = ".".repeat(currentDots);
+  //     setIdeInfo((prev) => [...prev.slice(0, -1), `${dotString}`]);
+  //     currentDots = (currentDots + 1) % (maxDots + 1);
+  //   }, 500);
 
-    return () => clearInterval(interval);
-  };
+  //   return () => clearInterval(interval);
+  // };
   if (OSScreen) {
     return (
       <div className="flex w-full h-screen items-center justify-center bg-black text-white">
         <div className="text-center">
-          <h1 className="text-6xl font-bold mb-4">WebDesktop</h1>
+          <h1 className="text-6xl font-bold mb-4 text-red-700">WebDesktop</h1>
           <p className="text-2xl">Loading operating system...</p>
+          {/* <motion.div
+            animate={{
+              scale: [1, 2, 2, 1, 1],
+              rotate: [0, 0, 270, 270, 0],
+              borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+            }}
+          /> */}
         </div>
       </div>
     );
@@ -131,7 +129,7 @@ const CompaqBoot: React.FC = () => {
             <p>Copyright (C) 1998, Award Software, Inc.</p>
           </div>
         )}
-       {showIdeInfo && (
+        {showIdeInfo && (
           <div className="mx-8">
             {ideInfo.map((text, index) => (
               <p key={index}>{text}</p>
