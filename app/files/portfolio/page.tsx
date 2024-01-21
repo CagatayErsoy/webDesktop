@@ -13,13 +13,20 @@ export default function Contact() {
       defLeft="15vw"
       title="About Cagatay Ersoy"
     >
-      <div className="bg-[#A7AABD] text-[#093973] p-4 rounded shadow-md h-full w-full">
-        <h1 className="text-2xl font-bold">
-          Some projects that I worked before
+      <div className="bg-terminal_bg text-terminal_text p-4 rounded shadow-md h-full w-full">
+      <h1 className="text-2xl font-bold">
+          Code Samples
         </h1>
+        <h1 className="text-2xl font-bold">
+          Projects
+        </h1>
+        
         <ul>
-          <li>Tento -freelancing</li>
-          <li>Allied Voices</li>
+        <li>Allied Voices</li>
+          <li> <a href=""> Tento</a>
+            </li>
+          <li>WebDesktop</li>
+          
         </ul>
       </div>
     </Window>

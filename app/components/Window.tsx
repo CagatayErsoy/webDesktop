@@ -24,25 +24,17 @@ const Window: FC<WindowProps> = ({
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [helperCount, setHelperCount] = useState(0);
   const [blackBg, setBlackBg] = useState(false);
-  const [zIndex, setZIndex]=useState("")
+  const [zIndex, setZIndex] = useState("");
   const windowRef = useRef<HTMLDivElement>(null);
   const controls = useDragControls();
-  const { refElement, addStack, stack, removeStack, windows ,setOpen} =
+  const { refElement, addStack, stack, removeStack, windows, setOpen } =
     useGlobalContext();
 
   useEffect(() => {
-    
-  
-      if (windows[id].isOpen) {
-        setIsOpen(true)
-        setZIndex(`${
-          10-stack.indexOf(id) 
-        }0`)
-        
-      }
-
-
-    
+    if (windows[id].isOpen) {
+      setIsOpen(true);
+      setZIndex(`${100 - stack.indexOf(id)}0`);
+    }
   }, [windows]);
 
   const handleFullScreenToggle = useCallback(() => {
@@ -50,35 +42,31 @@ const Window: FC<WindowProps> = ({
   }, [isFullScreen]);
 
   const handleClose = useCallback(() => {
-    setOpen(id,false);
-    setIsOpen(false)
+    setOpen(id, false);
+    setIsOpen(false);
     removeStack(id);
-    setZIndex("")
+    setZIndex("");
   }, [windows]);
   const handleBackgroundCover = () => {
-  addStack(id)
-    
+    addStack(id);
   };
   useEffect(() => {
     setHelperCount((prev) => prev + 1);
   }, [isFullScreen]);
   useEffect(() => {
-    
-
     stack.indexOf(id) !== 0 ? setBlackBg(true) : setBlackBg(false);
-    setZIndex(`${
-      10-stack.indexOf(id)
-    }0`)
-
+    setZIndex(`${100 - stack.indexOf(id)}0`);
   }, [stack]);
-  useEffect(()=>{
-    console.log(id,zIndex,stack.indexOf(id))
-  },[stack])
+  useEffect(() => {
+    console.log(id, zIndex, stack.indexOf(id));
+  }, [stack]);
 
   return isOpen ? (
     <motion.section
       key={helperCount}
-      className={`absolute overflow-hidden flex flex-col border border-main  ${isFullScreen ? "w-full h-screen" : " border-gray-200 shadow-lg "}`}
+      className={`absolute overflow-hidden flex flex-col border border-main  ${
+        isFullScreen ? "w-full h-screen" : " border-gray-200 shadow-lg "
+      }`}
       drag
       dragElastic={0}
       dragMomentum={false}
@@ -91,13 +79,13 @@ const Window: FC<WindowProps> = ({
         top: isFullScreen ? 0 : "15vh",
         width: isFullScreen ? "100vw" : windowWidth,
         height: isFullScreen ? "100vh" : windowHeight,
-        zIndex:zIndex
+        zIndex: zIndex,
       }}
     >
       {blackBg && (
         <div
           className={`absolute top-0 left-0 h-full w-full bg-black bg-opacity-50 `}
-          style={{ zIndex: 1 }}
+          style={{ zIndex: 11 }}
           onClick={handleBackgroundCover}
         >
           {" "}

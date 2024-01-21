@@ -5,7 +5,10 @@ import { FaUnderline } from "react-icons/fa";
 import { FaAlignLeft } from "react-icons/fa6";
 import { FaAlignRight } from "react-icons/fa6";
 import { FaAlignJustify } from "react-icons/fa6";
-
+import { MdDownload } from "react-icons/md";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
+import 'tippy.js/themes/light.css';
 import { useGlobalContext } from "@/app/Context/appcontext";
 import Window from "@/app/components/Window";
 import { useState } from "react";
@@ -40,25 +43,53 @@ export default function Cv() {
       title="CV"
       defLeft="15vw"
     >
-      <div className="flex justify-left items-center  p-2 gap-3 shadow-md bg-[#00669D] absolute z-1  justify-self-center text-third">
-        <button onClick={() => toggleStyle("bold")}>
-          <FaBold />
-        </button>
-        <button onClick={() => toggleStyle("italic")}>
-          <FaItalic />
-        </button>
-        <button onClick={() => toggleStyle("underline")}>
-          <FaUnderline />
-        </button>
-        <button onClick={() => setAlignment("left")}>
-          <FaAlignLeft />
-        </button>
-        <button onClick={() => setAlignment("center")}>
-          <FaAlignJustify />
-        </button>
-        <button onClick={() => setAlignment("right")}>
-          <FaAlignRight />
-        </button>
+      <div className="flex justify-left items-center  p-2 gap-3 shadow-md bg-[#00669D] absolute z-10  justify-self-center text-third">
+        <Tippy content="Toggle Bold" theme="pink_theme" >
+          <button onClick={() => toggleStyle("bold")}>
+            <FaBold />
+          </button>
+        </Tippy>
+
+        <Tippy content="Toggle Italic" theme="pink_theme">
+          <button onClick={() => toggleStyle("italic")} >
+            <FaItalic />
+          </button>
+        </Tippy>
+        <Tippy content="Toggle Underline" theme="pink_theme">
+          <button onClick={() => toggleStyle("underline")}>
+            <FaUnderline />
+          </button>
+        </Tippy>
+
+        <Tippy content="Toggle Left" theme="pink_theme">
+          <button onClick={() => setAlignment("left")}>
+            <FaAlignLeft />
+          </button>
+        </Tippy>
+
+        <Tippy content="Toggle Center" theme="pink_theme">
+          <button onClick={() => setAlignment("center")}>
+            <FaAlignJustify />
+          </button>
+        </Tippy>
+
+        <Tippy content="Toggle Right" theme="pink_theme">
+          <button onClick={() => setAlignment("right")}>
+            <FaAlignRight />
+          </button>
+        </Tippy>
+
+        <Tippy content="Downland as PDF" theme="pink_theme">
+          
+            <a
+              href="https://drive.google.com/uc?export=download&id=16VxPbdOE5S7HTD7ANACf2mT5RIFhxE2t"
+              target="_blank"
+            
+            >
+              <MdDownload />
+            </a>
+          
+        </Tippy>
       </div>
 
       <div
@@ -70,72 +101,63 @@ export default function Cv() {
       >
         <div className="bg-white  w-[793px] h-[1123] p-12 drop-shadow-2xl">
           <h1 className="text-2xl font-bold">Cagatay Ersoy</h1>
-          <p className="">Full Stack Developer</p>
-          <p>React/Angular/Node.js/Express/Firebase/SQL/MongoDb</p>
+          <p className="text-sm">Full Stack Developer - San Francisco, CA</p>
+          <p className="text-sm">415-494-1235 - cagatay.ersoy1@gmail.com</p>
+          <p className="text-sm">
+            linkedin.com/in/cagatay-ersoy | github.com/CagatayErsoy
+          </p>
+
           <div className="mt-4">
-            <h2 className="text-xl font-bold">About</h2>
+            <h2 className="text-xl font-bold">Technical Skills</h2>
+            <p>Programming Languages: JavaScript/TypeScript, C++</p>
             <p>
-             
-              I am a self-motivated Full Stack Developer with a
-              unique background in civil engineering, demonstrating a seamless
-              transition to technology through a relentless pursuit of knowledge
-              in web and software development. My experience encompasses both
-              front-end and back-end technologies, fostering a comprehensive
-              understanding of the software development lifecycle. Driven by a
-              passion for continuous learning and innovation, I adeptly
-              integrate diverse skills from engineering to programming, offering
-              inventive and efficient solutions in every project.
+              Web Technologies: React, Angular, Material UI, Angular Material,
+              TailwindCSS, Bootstrap, SCSS/SASS, Three.js, Rxjs, Formik,
+              Storybook, Leaflet.js, Node.js, Express.js, Nest.js, Airtable
             </p>
-          </div>
-          <div className="mt-4">
-            <h2 className="text-xl font-bold"> Past Experiences</h2>
-            <h3> Civil Engineering</h3>
-            <p>
-              Bilgi Construction- Construction Inspector (Jul 2016 - Nov 2018)
-            </p>
-            <p>
-              Metot Construction - Construction Site Manager (Jul 2016 - Nov
-              2018)
-            </p>
-            <p>
-              Arda Engineering CO.LTD. - Pipeline Engineer (Jun 2015 - Apr 2016)
-            </p>
-            <h3> Software Development</h3>
-            <p>Allied Voices -Front End Engineer(Open Source) </p>
-            <p>Antra -Front End Engineer </p>
-            <p>Freelancer </p>
-          </div>
-          <div className="mt-4">
-            <h2 className="text-xl font-bold">Education</h2>
-            <p> Ondokuz Mayis University -Civil Engineering</p>
-            <p>
-              City College of San Francisco - Associate degree, Computer IT -
-              Web Development (May 2022)
-            </p>
+            <p>Development Methodologies: SCRUM, Agile</p>
+            <p>Databases: SQL, MongoDB</p>
+            <p>Project Management: JIRA</p>
+            <p>Version Control: Git, GitHub</p>
+            <p>IDE: Visual Studio Code, Stackblitz</p>
+            <p>Testing: Postman, Jasmine</p>
           </div>
 
-          <div className="mt-4 ">
-            <h2 className="text-xl font-bold">Skills</h2>
-            <ul className="list-disc pl-5 ">
-              <li>JavaScript</li>
-              <li>TypeScript</li>
-              <li>React</li>
-              <li>Angular:</li>
-              <li>Vue</li>
-              <li>Next.js</li>
-              <li>Node.js</li>
-              <li>Express</li>
-              <li>Nest.js</li>
-              <li>Redux</li>
-              <li>Storybook</li>
-              <li>SQL</li>
-              <li>MongoDB</li>
-              <li>Sequelize </li>
-              <li>Prisma</li>
-              <li>Firebase</li>
-              <li> Google Cloud Run</li>
-              <li>AWS</li>
-            </ul>
+          <div className="mt-4">
+            <h2 className="text-xl font-bold">Professional Experience</h2>
+            <h3 className="text-lg font-semibold">
+              Civil Engineer (Turkey) - Sept 2014-Oct 2018
+            </h3>
+
+            <h3 className="text-lg font-semibold">
+              Allied Voices – Front End Developer (Remote) - Jan 2021 - May 2022
+            </h3>
+
+            <h3 className="text-lg font-semibold">
+              Antra – Full Stack Developer (Remote) - May 2022 - February 2023
+            </h3>
+
+            <h3 className="text-lg font-semibold">
+              Tento (Freelancer) – Front End Developer (Remote) - July 2023 -
+              October 2023
+            </h3>
+          </div>
+
+          <div className="mt-4">
+            <h2 className="text-xl font-bold">Education</h2>
+            <p>
+              City College of San Francisco, San Francisco, CA - Associate
+              Degree in CNIT Front End Web Development - August 2019 - May 2022
+            </p>
+            <p>
+              Ondokuz Mayis University - Bachelor of Science in Civil
+              Engineering - 2011 - 2015
+            </p>
+          </div>
+          <div className="mt-4">
+            <h2 className="text-xl font-bold">Certification</h2>
+            <p>Advanced Web Development Techniques Certificate (CCSF)</p>
+            <p>JavaScript Algorithms and Data Structures (FreeCodeCamp)</p>
           </div>
         </div>
       </div>
