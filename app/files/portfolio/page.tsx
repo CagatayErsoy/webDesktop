@@ -13,7 +13,7 @@ export default function Contact() {
       defLeft="15vw"
       title="Code Samples"
     >
-      <div className="bg-terminal_bg text-terminal_text p-4 rounded shadow-md h-full w-full">
+      <div className="bg-terminal_bg text-secondary p-4 rounded shadow-md h-full w-full">
       <h1 className="text-2xl font-bold">
           Code Samples
         </h1>
@@ -26,7 +26,7 @@ export default function Contact() {
         
         <ul>
         <li> <a href=""></a>Allied Voices</li> 
-          <li> <a href=""> Tento</a>
+          <li> <a href="https://www.tento.co/"> Tento</a>
             </li>
           <li>WebDesktop</li>
           

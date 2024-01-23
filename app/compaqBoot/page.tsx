@@ -11,7 +11,7 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
-import Ball from "./Ball";
+
 const CompaqBoot: React.FC = () => {
   const { setIsBooting } = useGlobalContext();
   const [memoryCount, setMemoryCount] = useState<number>(0);
@@ -84,12 +84,12 @@ const CompaqBoot: React.FC = () => {
   const orbitVariants = {
     rotate: {
       rotate: 360,
-      transition: { repeat: Infinity, duration: 10, ease: "linear" }
-    }
+      transition: { repeat: Infinity, duration: 10, ease: "linear" },
+    },
   };
   const orbitAnimation = (degreeOffset: number) => ({
     rotate: [degreeOffset, degreeOffset + 360],
-    transition: { repeat: Infinity, duration: 10, ease: "linear" }
+    transition: { repeat: Infinity, duration: 10, ease: "linear" },
   });
   const colors = ["bg-red-500", "bg-green-500", "bg-blue-500", "bg-[#ebde34]"];
   return (
@@ -183,46 +183,38 @@ const CompaqBoot: React.FC = () => {
         </div>
       </motion.div>
       <motion.div
-  className="flex items-center justify-center bg-inherit text-white absolute top-0 left-0 h-screen w-screen"
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ duration: 1, delay: 10.5 }}
->
-  <div className="text-center flex flex-col justify-center items-center">
-    <h1 className="text-[10rem] font-bold mb-4 text-red-700">
-      WebDesktop
-    </h1>
-    <div className="text-2xl flex items-center justify-center">
-      Loading operating system...
-    
-     
-      
-      
-      <div className="relative mx-10"> 
-        {[0, 90, 180, 270].map((degree, index) => (
-          <motion.div
-            key={index}
-            className={`absolute ${colors[index]} rounded-full w-4 h-4`}
-            style={{ 
-              top: '50%', 
-              left: '50%', 
-              x: '-50%', 
-              y: '-50%', 
-              rotate: degree, 
-              transformOrigin: "50% 150%" /* Adjusted for more distance */
-            }}
-            animate={orbitAnimation(degree)}
-          ></motion.div>
-        ))}
-      
-     
-      </div>
-    </div>
-  </div>
-</motion.div>
-
-     
-    
+        className="flex items-center justify-center bg-inherit text-white absolute top-0 left-0 h-screen w-screen"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 10.5 }}
+      >
+        <div className="text-center flex flex-col justify-center items-center">
+          <h1 className="text-[8rem] font-bold mb-4 text-red-700">
+            WebDesktop
+          </h1>
+          <div className="text-2xl flex items-center justify-center">
+            Loading operating system...
+            <div className="relative mx-10">
+              {[0, 90, 180, 270].map((degree, index) => (
+                <motion.div
+                  key={index}
+                  className={`absolute ${colors[index]} rounded-full w-4 h-4`}
+                  style={{
+                    top: "50%",
+                    left: "50%",
+                    x: "-50%",
+                    y: "-50%",
+                    rotate: degree,
+                    transformOrigin:
+                      "50% 150%" /* Adjusted for more distance */,
+                  }}
+                  animate={orbitAnimation(degree)}
+                ></motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.div>
     </motion.div>
   );
 };

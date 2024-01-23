@@ -1,8 +1,6 @@
 "use client";
 import Window from "@/app/components/Window";
-import { RefObject, useState } from "react";
 import { useGlobalContext } from "@/app/Context/appcontext";
-import useWindowDimensions from "@/app/utilities/useWindowDimensions";
 
 export default function About() {
   const { windows } = useGlobalContext();
