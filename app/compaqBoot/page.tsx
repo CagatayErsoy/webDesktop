@@ -87,8 +87,11 @@ const CompaqBoot: React.FC = () => {
       transition: { repeat: Infinity, duration: 10, ease: "linear" }
     }
   };
-
-
+  const orbitAnimation = (degreeOffset: number) => ({
+    rotate: [degreeOffset, degreeOffset + 360],
+    transition: { repeat: Infinity, duration: 10, ease: "linear" }
+  });
+  const colors = ["bg-red-500", "bg-green-500", "bg-blue-500", "bg-[#ebde34]"];
   return (
     <motion.div
       className="relative w-full h-screen bg-black text-gray-400 text-[1.4rem] "
@@ -191,39 +194,28 @@ const CompaqBoot: React.FC = () => {
     </h1>
     <div className="text-2xl flex items-center justify-center">
       Loading operating system...
-      <div className="flex">
-        {/* {[...Array(3)].map((_, index) => (
+    
+     
+      
+      
+      <div className="relative mx-10"> 
+        {[0, 90, 180, 270].map((degree, index) => (
           <motion.div
             key={index}
-            className="w-8 h-8 ml-2" // Adjust margin as needed
-            variants={triangleVariants}
-            animate="rotate"
-          >
-            <svg viewBox="0 0 100 100">
-              <polygon
-                points="50,15 100,100 0,100"
-                className="fill-current text-white"
-              />
-            </svg>
-          </motion.div>
-          
-        ))} */}
-         <motion.div
-        className="relative"
-        animate="rotate"
-        variants={orbitVariants}
-      >
-        {/* Earth */}
+            className={`absolute ${colors[index]} rounded-full w-4 h-4`}
+            style={{ 
+              top: '50%', 
+              left: '50%', 
+              x: '-50%', 
+              y: '-50%', 
+              rotate: degree, 
+              transformOrigin: "50% 150%" /* Adjusted for more distance */
+            }}
+            animate={orbitAnimation(degree)}
+          ></motion.div>
+        ))}
       
-
-        {/* Moon */}
-        <motion.div
-          className="absolute bg-gray-400 rounded-full w-8 h-8"
-          style={{ top: '50%', left: '120%' }}
-          animate={{ x: 100, y: 100 }}
-          transition={{ repeat: Infinity, duration: 2, ease: "linear", repeatType: "reverse" }}
-        ></motion.div>
-      </motion.div>
+     
       </div>
     </div>
   </div>
