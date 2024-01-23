@@ -32,6 +32,10 @@ const windows:Windows = {
       isOpen: false,
      
     },
+    virusWindow: {
+      id: "snakeWindow",
+      isOpen: false,
+    },
     };
     
   export default windows

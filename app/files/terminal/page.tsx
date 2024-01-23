@@ -12,7 +12,7 @@ export default function Terminal() {
   const [output, setOutput] = useState<(string | JSX.Element|null)[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
-  const { windows ,setIsBooting,closeAllWindows,setOpen,addStack} = useGlobalContext();
+  const { windows ,setIsBooting,closeAllWindows,setOpen,addStack,setShowVirus} = useGlobalContext();
   const [command, setCommand] = useState<string>("");
   const [hash, setHash] = useState("#");
   const [isLoading, setIsLoading] = useState(false);
@@ -82,6 +82,10 @@ export default function Terminal() {
      closeAllWindows()
 
 
+    }
+    else if( command==="virus.exe"){
+      closeAllWindows()
+      setShowVirus(true)
     }
     
     else if (command.startsWith("openai.ask:")) {

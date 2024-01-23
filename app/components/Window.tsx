@@ -35,6 +35,10 @@ const Window: FC<WindowProps> = ({
       setIsOpen(true);
       setZIndex(`${100 - stack.indexOf(id)}0`);
     }
+    else{
+     
+      setIsOpen(false)
+    }
   }, [windows]);
 
   const handleFullScreenToggle = useCallback(() => {
@@ -56,9 +60,6 @@ const Window: FC<WindowProps> = ({
   useEffect(() => {
     stack.indexOf(id) !== 0 ? setBlackBg(true) : setBlackBg(false);
     setZIndex(`${100 - stack.indexOf(id)}0`);
-  }, [stack]);
-  useEffect(() => {
-    console.log(id, zIndex, stack.indexOf(id));
   }, [stack]);
 
   return isOpen ? (

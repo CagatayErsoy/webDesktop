@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Contact from "./contact/page";
 import Cv from "./cv/page";
 import About from "./about/page";
@@ -6,21 +6,19 @@ import Portfolio from "./portfolio/page";
 import Terminal from "./terminal/page";
 import Snake from "./snake/page";
 import React, { FC, useCallback, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation"; // Corrected the import for useRouter
 import { useGlobalContext } from "../Context/appcontext";
 import { motion } from "framer-motion";
 import icons from "../utilities/IconsData";
-import Navbar from "../Navbar/page";
 
 
 export default function Files() {
-  
   const borderRef = useRef<HTMLElement>(null);
-  const{ setParentRef,setOpen,windows,addStack,removeStack,stack}=useGlobalContext()
-  
-  const handleDoubleClick = (key:string) => {
+  const { setParentRef, setOpen, windows, addStack, removeStack, stack } =
+    useGlobalContext();
+
+  const handleDoubleClick = (key: string) => {
     const cleanId = `${key}Window`;
-    
+
     // Check if the window is already open
     if (!windows[cleanId].isOpen) {
       // Open the window and add it to the stack
@@ -33,29 +31,31 @@ export default function Files() {
   };
   useEffect(() => {
     setParentRef(borderRef);
-    
+
     // Clean up
     return () => {
       setParentRef(null);
     };
   }, []);
 
-
- 
-    return (
-      <main ref={borderRef}
-      className="w-screen h-screen text-white p-10 flex flex-col items-end gap-5 justify-center overflow-hidden" >
+  return (
+    <motion.main
+      ref={borderRef}
+      className="w-screen h-screen text-white p-10 flex flex-col items-end gap-5 justify-center overflow-hidden"
+      initial={{ opacity: 0, }}
+    animate={{ opacity: 1, }}
+    transition={{ duration: 1 }}
+    >
       <Portfolio></Portfolio>
       <Terminal></Terminal>
-      <About ></About>
+      <About></About>
       <Cv></Cv>
       <Contact></Contact>
       <Snake></Snake>
-
       {Object.keys(icons).map((key) => {
-        const {label, src } = icons[key];
+        const { label, src } = icons[key];
         return (
-          <motion.div 
+          <motion.div
             key={key}
             id={key}
             drag
@@ -79,7 +79,6 @@ export default function Files() {
           </motion.div>
         );
       })}
-    
-      </main>
-    );
-  }
+    </motion.main>
+  );
+}

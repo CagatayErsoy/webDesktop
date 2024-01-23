@@ -13,7 +13,7 @@ const helpElement: JSX.Element = (
           <li className="text-yellow">contact.mail</li>
           <li className="text-yellow">cv.txt</li>
           <li className="text-yellow">portfolio.bat</li>
-          <li className="text-yellow">snake.ap</li>
+          <li className="text-yellow">snake.app</li>
           <li className="text-yellow">virus.exe</li>
           <li className="text-yellow">openai.ask:</li>
          

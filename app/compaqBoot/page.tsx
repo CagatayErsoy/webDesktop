@@ -3,7 +3,15 @@
 import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../Context/appcontext";
 import EnergyStarLogo from "./EnergyStarLogo";
-import { animate, motion, useMotionValue, useTransform } from "framer-motion";
+
+import {
+  animate,
+  motion,
+  spring,
+  useMotionValue,
+  useTransform,
+} from "framer-motion";
+import Ball from "./Ball";
 const CompaqBoot: React.FC = () => {
   const { setIsBooting } = useGlobalContext();
   const [memoryCount, setMemoryCount] = useState<number>(0);
@@ -13,44 +21,26 @@ const CompaqBoot: React.FC = () => {
   const [ideInfo, setIdeInfo] = useState<string[]>([]);
   const [ideInfoIndex, setIdeInfoIndex] = useState<number>(0);
   const [OSScreen, setOSScreen] = useState(false);
-  const maxMemory = 52420;
+  const maxMemory = 102420;
   const ideInfoText = [
     "Detecting IDE Primary Master...None",
     "Detecting IDE Primary Slave ... None,",
     "Detecting IDE Secondary Master ... None",
     "Detecting IDE Secondary Slave ... None",
   ];
-  //typing animation
+
   const count = useMotionValue(0);
-  // const rounded = useTransform(count, (latest) => Math.round(latest));
-  // const displayText = useTransform(rounded, (latest) =>
-  // // baseText.slice(0, latest))
-  useEffect(() => {
-    let ideInfoTimeout: ReturnType<typeof setInterval>;
-    if (showIdeInfo) {
-      ideInfoTimeout = setInterval(() => {
-        if (ideInfoIndex < ideInfoText.length) {
-          setIdeInfoIndex(ideInfoIndex + 1);
-          setIdeInfo((prev) => [...prev, ideInfoText[ideInfoIndex]]);
-        } else if (ideInfoIndex === ideInfoText.length) {
-          setOSScreen(true);
 
-          setTimeout(() => {
-            setIsBooting(false);
-          }, 2000);
-        }
-      }, 1000);
-    }
-
-    return () => {
-      clearInterval(ideInfoTimeout);
-    };
-  }, [showIdeInfo, ideInfoIndex]);
+  const appear = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    transition: { duration: 1 },
+  };
 
   useEffect(() => {
     let interval: ReturnType<typeof setInterval>;
 
-    if (showMemoryTest && memoryCount < maxMemory) {
+    if (memoryCount < maxMemory) {
       interval = setInterval(() => {
         setMemoryCount((prevCount) => {
           const nextCount = prevCount + 1024;
@@ -72,75 +62,176 @@ const CompaqBoot: React.FC = () => {
   }, [memoryCount, setIsBooting]);
 
   const formatMemoryCount = (count: number): string => {
-    return count.toString().padStart(7, "0");
+    return count.toString().padStart(6, "0");
   };
-  // const animateDots = () => {
-  //   let dotString = "";
-  //   const maxDots = 5;
-  //   let currentDots = 0;
 
-  //   const interval = setInterval(() => {
-  //     dotString = ".".repeat(currentDots);
-  //     setIdeInfo((prev) => [...prev.slice(0, -1), `${dotString}`]);
-  //     currentDots = (currentDots + 1) % (maxDots + 1);
-  //   }, 500);
+  useEffect(() => {
+    let bootTime = setTimeout(() => {
+      setIsBooting(false);
+    }, 16000);
+    return () => clearTimeout(bootTime);
+  }, []);
+  const triangleVariants = {
+    rotate: {
+      rotate: 360,
+      transition: {
+        duration: 2,
+        ease: "linear",
+        repeat: Infinity,
+      },
+    },
+  };
+  const orbitVariants = {
+    rotate: {
+      rotate: 360,
+      transition: { repeat: Infinity, duration: 10, ease: "linear" }
+    }
+  };
 
-  //   return () => clearInterval(interval);
-  // };
-  if (OSScreen) {
-    return (
-      <div className="flex w-full h-screen items-center justify-center bg-black text-white">
-        <div className="text-center">
-          <h1 className="text-6xl font-bold mb-4 text-red-700">WebDesktop</h1>
-          <p className="text-2xl">Loading operating system...</p>
-          {/* <motion.div
-            animate={{
-              scale: [1, 2, 2, 1, 1],
-              rotate: [0, 0, 270, 270, 0],
-              borderRadius: ["20%", "20%", "50%", "50%", "20%"],
-            }}
-          /> */}
-        </div>
-      </div>
-    );
-  }
+
   return (
-    <div className="relative w-full h-screen bg-black text-gray-400 text-[1.4rem]">
-      <EnergyStarLogo />
-      <div className="flex flex-col p-8 gap-5">
-        <div>
-          <p>webDesktop BIOS v4.60PGA, webDesktop-Ersoy Ally</p>
-          <p>Copyright (C) 2023, Ersoy Software, LLC.</p>
-        </div>
-        <div>
-          <p>Version 1.03</p>
-        </div>
+    <motion.div
+      className="relative w-full h-screen bg-black text-gray-400 text-[1.4rem] "
+      initial={{ opacity: 1 }}
+      animate={{ opacity: 0 }}
+      transition={{ duration: 1, delay: 15 }}
+    >
+      <motion.div
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0 }}
+        transition={{ duration: 1, delay: 10 }}
+      >
+        <EnergyStarLogo />
+        <motion.div
+          className="flex flex-col p-8 gap-5"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <motion.div>
+            <p>webDesktop BIOS v4.60PGA, webDesktop-Ersoy Ally</p>
+            <p>Copyright (C) 2023, Ersoy Software, LLC.</p>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1 }}
+          >
+            <p>Version 1.03</p>
+          </motion.div>
 
-        <div>
-          <p>PENTIUM ODP-MMX CPU at 200MHz</p>
-          <p>
-            Memory Test: {formatMemoryCount(memoryCount)}{" "}
-            {showAwardBios && "OK"}
-          </p>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 2 }}
+          >
+            <p>PENTIUM ODP-MMX CPU at 200MHz</p>
+            <p>
+              Memory Test: {formatMemoryCount(memoryCount)}{" "}
+              {showAwardBios && "OK"}
+            </p>
+          </motion.div>
+          {showAwardBios && (
+            <div>
+              {" "}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+              >
+                <p>Award Plug and Play BIOS Extension v1.0A</p>
+                <p>Copyright (C) 1998, Award Software, Inc.</p>
+              </motion.div>
+              <div className="mx-8 my-5">
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 1 }}
+                >
+                  Detecting IDE Primary Master...None
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 2 }}
+                >
+                  Detecting IDE Primary Slave ... None
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 3 }}
+                >
+                  Detecting IDE Secondary Master ... None
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1, delay: 4 }}
+                >
+                  Detecting IDE Secondary Slave ... None
+                </motion.p>
+              </div>
+            </div>
+          )}
+        </motion.div>
+        <div className="absolute bottom-0 w-full text-center">
+          <p>Please wait for the screen </p>
         </div>
-        {showAwardBios && (
-          <div>
-            <p>Award Plug and Play BIOS Extension v1.0A</p>
-            <p>Copyright (C) 1998, Award Software, Inc.</p>
-          </div>
-        )}
-        {showIdeInfo && (
-          <div className="mx-8">
-            {ideInfo.map((text, index) => (
-              <p key={index}>{text}</p>
-            ))}
-          </div>
-        )}
-      </div>
-      <div className="absolute bottom-0 w-full text-center">
-        <p>Press DEL to enter SETUP</p>
+      </motion.div>
+      <motion.div
+  className="flex items-center justify-center bg-inherit text-white absolute top-0 left-0 h-screen w-screen"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 1, delay: 10.5 }}
+>
+  <div className="text-center flex flex-col justify-center items-center">
+    <h1 className="text-[10rem] font-bold mb-4 text-red-700">
+      WebDesktop
+    </h1>
+    <div className="text-2xl flex items-center justify-center">
+      Loading operating system...
+      <div className="flex">
+        {/* {[...Array(3)].map((_, index) => (
+          <motion.div
+            key={index}
+            className="w-8 h-8 ml-2" // Adjust margin as needed
+            variants={triangleVariants}
+            animate="rotate"
+          >
+            <svg viewBox="0 0 100 100">
+              <polygon
+                points="50,15 100,100 0,100"
+                className="fill-current text-white"
+              />
+            </svg>
+          </motion.div>
+          
+        ))} */}
+         <motion.div
+        className="relative"
+        animate="rotate"
+        variants={orbitVariants}
+      >
+        {/* Earth */}
+      
+
+        {/* Moon */}
+        <motion.div
+          className="absolute bg-gray-400 rounded-full w-8 h-8"
+          style={{ top: '50%', left: '120%' }}
+          animate={{ x: 100, y: 100 }}
+          transition={{ repeat: Infinity, duration: 2, ease: "linear", repeatType: "reverse" }}
+        ></motion.div>
+      </motion.div>
       </div>
     </div>
+  </div>
+</motion.div>
+
+     
+    
+    </motion.div>
   );
 };
 

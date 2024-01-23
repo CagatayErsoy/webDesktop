@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useGlobalContext } from "../Context/appcontext";
 
 interface NavbarIconProps {
@@ -8,13 +8,14 @@ interface NavbarIconProps {
 }
 
 const NavbarIcon: React.FC<NavbarIconProps> = ({ iconKey, src, label }) => {
-  const { setOpen, windows, addStack, removeStack } = useGlobalContext();
+  const { setOpen, windows, addStack,setShowVirus ,closeAllWindows,showVirus,handleVirus} = useGlobalContext();
 
   const handleClick = (key: string) => {
-    console.log(key)
     const cleanId = `${key}Window`;
-
-    // Check if the window exists and is open
+    if(key==="virus"){
+      console.log("virus")
+      handleVirus()
+    }
     if (windows[cleanId] && !windows[cleanId].isOpen) {
       setOpen(cleanId, true);
       addStack(cleanId);
@@ -22,6 +23,9 @@ const NavbarIcon: React.FC<NavbarIconProps> = ({ iconKey, src, label }) => {
       addStack(cleanId);
     }
   };
+  useEffect(()=>{
+    console.log("show virus changed", showVirus)
+  },[showVirus])
 
   return (
     <div

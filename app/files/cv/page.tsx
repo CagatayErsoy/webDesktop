@@ -93,14 +93,14 @@ export default function Cv() {
       </div>
 
       <div
-        className={`bg-main text-main p-[5rem] rounded shadow-md flex items-center justify-center ${
+        className={`bg-main text-second_blue p-[5rem] rounded shadow-md flex items-center justify-center ${
           textStyle.bold ? "font-black" : ""
         } ${textStyle.italic ? "italic" : ""} ${
           textStyle.underline ? "underline" : ""
         } text-${textStyle.align}`}
       >
-        <div className="bg-white  w-[793px] h-[1123] p-12 drop-shadow-2xl">
-          <h1 className="text-2xl font-bold">Cagatay Ersoy</h1>
+        <div className="bg-white  w-[793px] h-[1123] p-12 drop-shadow-2xl text-main">
+          <h1 className="text-3xl font-bold text-main">- Cagatay Ersoy -</h1>
           <p className="text-sm">Full Stack Developer - San Francisco, CA</p>
           <p className="text-sm">415-494-1235 - cagatay.ersoy1@gmail.com</p>
           <p className="text-sm">
@@ -108,54 +108,54 @@ export default function Cv() {
           </p>
 
           <div className="mt-4">
-            <h2 className="text-xl font-bold">Technical Skills</h2>
-            <p>Programming Languages: JavaScript/TypeScript, C++</p>
-            <p>
-              Web Technologies: React, Angular, Material UI, Angular Material,
+            <h2 className="text-2xl font-bold text-main">- Technical Skills -</h2>
+            <li><span className="text-main">Programming Languages:</span> JavaScript/TypeScript, C++</li>
+            <li>
+             <span className="text-main">Web Technologies: </span> React, Angular, Material UI, Angular Material,
               TailwindCSS, Bootstrap, SCSS/SASS, Three.js, Rxjs, Formik,
               Storybook, Leaflet.js, Node.js, Express.js, Nest.js, Airtable
+            </li>
+            <li> <span className="text-main">Development Methodologies:</span> SCRUM, Agile</li>
+            <li><span className="text-main">Databases:</span> SQL, MongoDB</li>
+            <li><span className="text-main">Project Management:</span> JIRA</li>
+            <li><span className="text-main">Version Control:</span> Git, GitHub</li>
+            <li><span className="text-main">IDE:</span> Visual Studio Code, Stackblitz</li>
+            <li><span className="text-main">Testing:</span> Postman, Jasmine</li>
+          </div>
+
+          <div className="mt-4">
+            <h2 className="text-2xl font-bold"> - Professional Experience -</h2>
+            <p className="text-lg ">
+              Civil Engineer (Turkey) - <span className="text-sm">Sept 2014-Oct 2018</span> 
             </p>
-            <p>Development Methodologies: SCRUM, Agile</p>
-            <p>Databases: SQL, MongoDB</p>
-            <p>Project Management: JIRA</p>
-            <p>Version Control: Git, GitHub</p>
-            <p>IDE: Visual Studio Code, Stackblitz</p>
-            <p>Testing: Postman, Jasmine</p>
+
+            <p className="text-lg">
+              Allied Voices – Front End Developer (Remote) - <span className="text-sm">Jan 2021 - May 2022</span>
+            </p>
+
+            <p className="text-lg">
+              Antra – Full Stack Developer (Remote) - <span className="text-sm">May 2022 - February 2023</span>
+            </p>
+
+            <p className="text-lg ">
+              Tento (Freelancer) – Front End Developer (Remote) - <span className="text-sm">July 2023 -
+              October 2023</span>
+            </p>
           </div>
 
           <div className="mt-4">
-            <h2 className="text-xl font-bold">Professional Experience</h2>
-            <h3 className="text-lg font-semibold">
-              Civil Engineer (Turkey) - Sept 2014-Oct 2018
-            </h3>
-
-            <h3 className="text-lg font-semibold">
-              Allied Voices – Front End Developer (Remote) - Jan 2021 - May 2022
-            </h3>
-
-            <h3 className="text-lg font-semibold">
-              Antra – Full Stack Developer (Remote) - May 2022 - February 2023
-            </h3>
-
-            <h3 className="text-lg font-semibold">
-              Tento (Freelancer) – Front End Developer (Remote) - July 2023 -
-              October 2023
-            </h3>
-          </div>
-
-          <div className="mt-4">
-            <h2 className="text-xl font-bold">Education</h2>
+            <h2 className="text-2xl font-bold">- Education -</h2>
             <p>
               City College of San Francisco, San Francisco, CA - Associate
-              Degree in CNIT Front End Web Development - August 2019 - May 2022
+              Degree in CNIT Front End Web Development - <span className="text-sm">August 2019 - May 2022</span>
             </p>
             <p>
               Ondokuz Mayis University - Bachelor of Science in Civil
-              Engineering - 2011 - 2015
+              Engineering - September -<span className="text-sm">2011 - May 2015</span>
             </p>
           </div>
           <div className="mt-4">
-            <h2 className="text-xl font-bold">Certification</h2>
+            <h2 className="text-2xl font-bold">- Certification -</h2>
             <p>Advanced Web Development Techniques Certificate (CCSF)</p>
             <p>JavaScript Algorithms and Data Structures (FreeCodeCamp)</p>
           </div>

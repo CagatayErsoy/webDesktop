@@ -8,7 +8,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { useGlobalContext } from "../Context/appcontext";
 import icons from "../utilities/IconsData";
 import { FaFolder } from "react-icons/fa";
-
+import { motion } from "framer-motion";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,14 +36,19 @@ export default function Navbar() {
       setIsSubMenuOpen(false)
     }
   },[isBooting])
-  // #c0cade
+  
   return (
     !isBooting ?
-    <nav className="bg-third w-full fixed bottom-0 h-12 flex items-center z-[100]">
+    <motion.nav className="bg-third w-full fixed bottom-0 h-12 flex items-center z-[100]"
+    exit={{ opacity:0 }}
+  initial={{ opacity:0 }}
+  animate={{ opacity:1 }}
+  transition={{ duration: 1 }}
+    >
       <div className="flex items-center justify-between h-16  w-full ">
         <button
           onClick={toggleMenu}
-          className=" text-[#093973] w-20  flex items-center justify-center font-bold text-xl h-full rounded-md hover:bg-forth hover:text-third"
+          className=" text-[#093973] w-20  flex items-center justify-center font-bold text-xl h-12 rounded-e-md hover:bg-forth hover:text-third"
         >
           Start
         </button>
@@ -51,6 +56,7 @@ export default function Navbar() {
           <a
             href="https://www.linkedin.com/in/cagatay-ersoy/"
             className="text-xl"
+            target="_blank"
           >
             {" "}
             <FaLinkedin />
@@ -98,6 +104,6 @@ export default function Navbar() {
           </div>
         )}
       </div>
-    </nav> :null
+    </motion.nav> :null
   );
 }

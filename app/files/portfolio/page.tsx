@@ -11,18 +11,21 @@ export default function Contact() {
       windowHeight="70vh"
       id={windows.portfolioWindow.id}
       defLeft="15vw"
-      title="About Cagatay Ersoy"
+      title="Code Samples"
     >
       <div className="bg-terminal_bg text-terminal_text p-4 rounded shadow-md h-full w-full">
       <h1 className="text-2xl font-bold">
           Code Samples
         </h1>
+        <ul>
+          <li>  </li>
+        </ul>
         <h1 className="text-2xl font-bold">
           Projects
         </h1>
         
         <ul>
-        <li>Allied Voices</li>
+        <li> <a href=""></a>Allied Voices</li> 
           <li> <a href=""> Tento</a>
             </li>
           <li>WebDesktop</li>
