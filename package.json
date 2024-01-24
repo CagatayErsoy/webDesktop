@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-email/components": "0.0.13",
+    "@stackblitz/sdk": "^1.9.0",
     "@tippyjs/react": "^4.2.6",
     "framer-motion": "^10.18.0",
     "next": "14.0.4",
