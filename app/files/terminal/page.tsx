@@ -16,7 +16,7 @@ export default function Terminal() {
   const [command, setCommand] = useState<string>("");
   const [hash, setHash] = useState("#");
   const [isLoading, setIsLoading] = useState(false);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(false);
   const baseText =
     "Welcome to smallBash for webDesktop, type help for guidelines..." as string;
   const count = useMotionValue(0);
