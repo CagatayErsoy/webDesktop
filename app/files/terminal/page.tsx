@@ -16,6 +16,7 @@ export default function Terminal() {
   const [command, setCommand] = useState<string>("");
   const [hash, setHash] = useState("#");
   const [isLoading, setIsLoading] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const baseText =
     "Welcome to smallBash for webDesktop, type help for guidelines..." as string;
   const count = useMotionValue(0);
@@ -161,13 +162,21 @@ export default function Terminal() {
 
   },
   [windows])
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   return (
     <Window
       windowWidth="70vw"
       windowHeight="70vh"
       id={windows.terminalWindow.id}
       title="Terminal"
-      defLeft="15vw"
+      defLeft={isMobile?"5vw":"15vw"}
     >
       <div className="bg-[#0e0e1b] p-4 rounded shadow-md text-terminal_text h-full text-lg overflow-auto ">
         <motion.span className="text-terminal_text">{displayText}</motion.span>

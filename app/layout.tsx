@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -12,6 +11,9 @@ const myFont = localFont({ src: "../public/fonts/Px437_Compaq_Port3.ttf" });
 export const metadata: Metadata = {
   title: "WebDesktop",
   description: "Created by Cagatay Ersoy",
+  icons:{
+    icon:'./computer.png'
+  }
 };
 
 export default function RootLayout({

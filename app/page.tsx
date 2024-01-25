@@ -5,26 +5,22 @@ import Navbar from "./Navbar/page";
 import { useGlobalContext } from "./Context/appcontext";
 import CompaqBoot from "./compaqBoot/page";
 import Virus from "./virus/page";
-CompaqBoot
+CompaqBoot;
 export default function Home() {
-  const {isBooting,showVirus,closeAllWindows}=useGlobalContext()
+  const { isBooting, showVirus } = useGlobalContext();
 
-// useEffect(()=>{
-//   closeAllWindows()
-// }
 
-// ,[showVirus])
-
-  
-  return <>{isBooting?<CompaqBoot/> : <>
-    
-      { showVirus&&<Virus></Virus>}
-        
-       <Files></Files>
-  </>
-}  
- 
-      
-  </>;
+  return (
+    <>
+      {isBooting ? (
+        <CompaqBoot />
+      ) : (
+        <>
+          {showVirus && <Virus></Virus>}
+         
+          <Files></Files>
+        </>
+      )}
+    </>
+  );
 }
-

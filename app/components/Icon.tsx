@@ -8,12 +8,12 @@ interface NavbarIconProps {
 }
 
 const NavbarIcon: React.FC<NavbarIconProps> = ({ iconKey, src, label }) => {
-  const { setOpen, windows, addStack,setShowVirus ,closeAllWindows,showVirus,handleVirus} = useGlobalContext();
+  const { setOpen, windows, addStack,showVirus,handleVirus} = useGlobalContext();
 
   const handleClick = (key: string) => {
     const cleanId = `${key}Window`;
     if(key==="virus"){
-      console.log("virus")
+     
       handleVirus()
     }
     if (windows[cleanId] && !windows[cleanId].isOpen) {
@@ -24,7 +24,7 @@ const NavbarIcon: React.FC<NavbarIconProps> = ({ iconKey, src, label }) => {
     }
   };
   useEffect(()=>{
-    console.log("show virus changed", showVirus)
+    
   },[showVirus])
 
   return (
@@ -34,7 +34,7 @@ const NavbarIcon: React.FC<NavbarIconProps> = ({ iconKey, src, label }) => {
       className="flex justify-start items-center gap-2 p-2 text-main hover:bg-forth hover:text-secondary cursor-pointer"
     >
       <div
-        className="w-[2.5rem] h-[2.5rem]"
+        className="w-10 h-10 2xl:h-14 2xl:w-14"
         style={{
           backgroundImage: `url(${src})`,
           backgroundSize: "cover",

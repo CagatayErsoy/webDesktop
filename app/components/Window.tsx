@@ -25,7 +25,7 @@ const Window: FC<WindowProps> = ({
   const [helperCount, setHelperCount] = useState(0);
   const [blackBg, setBlackBg] = useState(false);
   const [zIndex, setZIndex] = useState("");
-  const windowRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const controls = useDragControls();
   const { refElement, addStack, stack, removeStack, windows, setOpen } =
     useGlobalContext();
@@ -50,6 +50,7 @@ const Window: FC<WindowProps> = ({
     setIsOpen(false);
     removeStack(id);
     setZIndex("");
+    setIsFullScreen(false)
   }, [windows]);
   const handleBackgroundCover = () => {
     addStack(id);
@@ -61,6 +62,14 @@ const Window: FC<WindowProps> = ({
     stack.indexOf(id) !== 0 ? setBlackBg(true) : setBlackBg(false);
     setZIndex(`${100 - stack.indexOf(id)}0`);
   }, [stack]);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return isOpen ? (
     <motion.section
@@ -78,7 +87,7 @@ const Window: FC<WindowProps> = ({
       style={{
         left: isFullScreen ? 0 : defLeft,
         top: isFullScreen ? 0 : "15vh",
-        width: isFullScreen ? "100vw" : windowWidth,
+        width: isFullScreen ? "100vw" : (isMobile ? "95vw" : windowWidth),
         height: isFullScreen ? "100vh" : windowHeight,
         zIndex: zIndex,
       }}

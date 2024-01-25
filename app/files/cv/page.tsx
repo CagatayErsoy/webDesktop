@@ -11,7 +11,7 @@ import "tippy.js/dist/tippy.css";
 import 'tippy.js/themes/light.css';
 import { useGlobalContext } from "@/app/Context/appcontext";
 import Window from "@/app/components/Window";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 interface TextStyle {
   bold: boolean;
   italic: boolean;
@@ -20,13 +20,21 @@ interface TextStyle {
 }
 export default function Cv() {
   const { windows } = useGlobalContext();
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [textStyle, setTextStyle] = useState<TextStyle>({
     bold: false,
     italic: false,
     underline: false,
     align: "left",
   });
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
 
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   const toggleStyle = (style: keyof TextStyle) => {
     setTextStyle({ ...textStyle, [style]: !textStyle[style] });
   };
@@ -41,7 +49,7 @@ export default function Cv() {
       windowHeight="70vh"
       id={windows.cvWindow.id}
       title="CV"
-      defLeft="15vw"
+      defLeft={isMobile?"5vw":"15vw"}
     >
       <div className="flex justify-left items-center  p-2 gap-3 shadow-md bg-[#00669D] absolute z-10  justify-self-center text-third">
         <Tippy content="Toggle Bold" theme="pink_theme" >
@@ -93,7 +101,7 @@ export default function Cv() {
       </div>
 
       <div
-        className={`bg-main text-second_blue p-[5rem] rounded shadow-md flex items-center justify-center ${
+        className={`bg-main text-second_blue lg:p-[5rem] py-10 rounded shadow-md flex items-center justify-center ${
           textStyle.bold ? "font-black" : ""
         } ${textStyle.italic ? "italic" : ""} ${
           textStyle.underline ? "underline" : ""

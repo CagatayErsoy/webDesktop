@@ -1,23 +1,33 @@
 "use client";
 import Window from "@/app/components/Window";
 import { useGlobalContext } from "@/app/Context/appcontext";
+import { useEffect, useState } from "react";
 
 export default function About() {
   const { windows } = useGlobalContext();
   const units = 101; // Total units
   const majorUnit = 5; // Every 10th unit is a major unit
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   return (
     <Window
       windowWidth="70vw"
       windowHeight="70vh"
       id={windows.aboutWindow.id}
-      title="About.txt"
-      defLeft="15vw"
+      title="About"
+      defLeft={isMobile?"5vw":"15vw"}
     >
       <section className="py-20  bg-main  flex flex-col justify-center text-main items-center z-[-2]">
       {/* Horizontal Ruler */}
       
-      <div className="flex absolute top-10 left-auto bg-second_blue h-6 px-5 z-10">
+      <div className="lg:flex hidden absolute top-10 left-auto bg-second_blue h-6 px-5 z-10 ">
           {[...Array(units)].map((_, index) => (
             <div key={index} className={`w-2 ${index % majorUnit === 0 ? 'border-b-2' : 'border-b'} border-secondary`}>
               {index % majorUnit === 0 && <span className="text-xs text-secondary">{index}</span>}
@@ -26,14 +36,14 @@ export default function About() {
         </div>
 
         {/* Vertical Ruler */}
-        <div className="flex flex-col absolute top-auto left-4 bg-second_blue py-5">
+        <div className=" lg:flex hidden flex-col absolute top-auto left-4 bg-second_blue py-5">
           {[...Array(units)].map((_, index) => (
             <div key={index} className={`h-2 ${index % majorUnit === 0 ? 'border-r-2' : 'border-r'} border-secondary`}>
               {index % majorUnit === 0 && <span className="text-xs text-secondary">{index}</span>}
             </div>
           ))}
         </div>
-        <div className="bg-white  w-[793px] h-[1123] p-12 drop-shadow-2xl page ">
+        <div className="bg-white  lg:w-[793px] h-[1123] md:w-[40rem] w-96 p-12 drop-shadow-2xl page ">
           
           <h2 className="text-xl font-bold">About Me</h2>
 

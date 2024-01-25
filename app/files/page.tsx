@@ -13,15 +13,17 @@ import icons from "../utilities/IconsData";
 
 export default function Files() {
   const borderRef = useRef<HTMLElement>(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const { setParentRef, setOpen, windows, addStack, removeStack, stack } =
     useGlobalContext();
 
   const handleDoubleClick = (key: string) => {
     const cleanId = `${key}Window`;
-
+    console.log("double")
     // Check if the window is already open
     if (!windows[cleanId].isOpen) {
       // Open the window and add it to the stack
+      
       setOpen(cleanId, true);
       addStack(cleanId);
     } else {
@@ -37,11 +39,20 @@ export default function Files() {
       setParentRef(null);
     };
   }, []);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
 
   return (
     <motion.main
       ref={borderRef}
-      className="w-screen h-screen text-white p-10 flex flex-col items-end gap-5 justify-center overflow-hidden"
+      className="w-screen h-screen text-white p-10 flex flex-col items-end gap-5 2xl:gap-12 justify-center overflow-hidden"
       initial={{ opacity: 0, }}
     animate={{ opacity: 1, }}
     transition={{ duration: 1 }}
@@ -64,11 +75,12 @@ export default function Files() {
             dragMomentum={false}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
+            onClick={isMobile?()=>handleDoubleClick(key):undefined}
             onDoubleClick={() => handleDoubleClick(key)}
-            className="flex flex-col justify-center content-center items-center w-20 h-30 relative gap-2"
+            className="flex flex-col justify-center content-center items-center w-20 h-30 relative gap-1"
           >
             <div
-              className="w-[4.5rem] h-[4.5rem]"
+              className="w-[4.5rem] h-[4.5rem] xl:w-[5.3rem] xl:h-[5.3rem]"
               style={{
                 backgroundImage: `url(${src}) `,
                 backgroundSize: "cover",

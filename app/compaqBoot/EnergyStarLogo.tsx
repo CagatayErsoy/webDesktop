@@ -10,7 +10,7 @@ const brush=Alex_Brush({
 const EnergyStarLogo: React.FC = () => {
    
     return (
-        <motion.div className="absolute top-0 right-0 m-10"
+        <motion.div className="absolute top-0 right-0 m-10 hidden md:block"
         initial={{ opacity: 0, }}
     animate={{ opacity: 1,  }}
     transition={{ duration: 1 }}>

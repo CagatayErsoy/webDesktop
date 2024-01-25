@@ -12,8 +12,6 @@ import {
 } from "react-icons/fa";
 
 import { useGlobalContext } from "@/app/Context/appcontext";
-const canvasX = 1000;
-const canvasY = 1000;
 const initialSnake = [
   [4, 10],
   [4, 10],
@@ -21,7 +19,8 @@ const initialSnake = [
 const initialApple = [14, 10];
 const scale = 50;
 const timeDelay = 100;
-
+const canvasX = 1000 ;
+const canvasY = 1000
 const Snake: React.FC = () => {
   const { windows } = useGlobalContext();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -32,6 +31,8 @@ const Snake: React.FC = () => {
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+ 
 
   useInterval(() => runGame(), delay);
   useEffect(() => {
@@ -142,21 +143,28 @@ const Snake: React.FC = () => {
 
     setDirection(newDirection);
   }
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
 
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   return (
     <Window
       windowWidth="70vw"
       windowHeight="70vh"
       id={windows.snakeWindow.id}
       title="snake"
-      defLeft="15vw"
+      defLeft={isMobile?"5vw":"15vw"}
     >
       <div
         className="gameContainer bg-main h-full w-full flex justify-center items-center gap-8 "
         onKeyDown={(e) => changeDirection(e)}
         tabIndex={0}
       >
-        <div className="controlPanel flex flex-col items-center justify-between gap-8 ">
+        <div className="controlPanel flex lg:flex-col items-center justify-between gap-8 absolute bottom-0  lg:relative">
           <div className="scoreBox">
             <h2>Score: {score}</h2>
             <h2>High Score: {highScore}</h2>
@@ -169,7 +177,7 @@ const Snake: React.FC = () => {
           </button>
         </div>
         <canvas
-          className="playArea bg-black w-[585px] h-[440px]"
+          className="playArea bg-black lg:w-[585px] lg:h-[440px] w-[340px] h-[340px]"
           ref={canvasRef}
           width={`${canvasX}px`}
           height={`${canvasY}px`}
@@ -179,7 +187,7 @@ const Snake: React.FC = () => {
             Game Over
           </div>
         )}
-        <div className="flex flex-col items-center justify-between  gap-3 w-[10rem] ">
+        <div className="lg:flex lg:flex-col items-center justify-between  gap-3 w-[10rem] hidden">
           <p>
             {" "}
             Click <span className="text-terminal_text">Play</span> for start the game, use your

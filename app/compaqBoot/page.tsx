@@ -15,20 +15,8 @@ import {
 const CompaqBoot: React.FC = () => {
   const { setIsBooting } = useGlobalContext();
   const [memoryCount, setMemoryCount] = useState<number>(0);
-  const [showMemoryTest, setShowMemoryTest] = useState<boolean>(true);
   const [showAwardBios, setShowAwardBios] = useState<boolean>(false);
-  const [showIdeInfo, setShowIdeInfo] = useState<boolean>(false);
-  const [ideInfo, setIdeInfo] = useState<string[]>([]);
-  const [ideInfoIndex, setIdeInfoIndex] = useState<number>(0);
-  const [OSScreen, setOSScreen] = useState(false);
   const maxMemory = 102420;
-  const ideInfoText = [
-    "Detecting IDE Primary Master...None",
-    "Detecting IDE Primary Slave ... None,",
-    "Detecting IDE Secondary Master ... None",
-    "Detecting IDE Secondary Slave ... None",
-  ];
-
   const count = useMotionValue(0);
 
   const appear = {
@@ -47,9 +35,7 @@ const CompaqBoot: React.FC = () => {
           if (nextCount >= maxMemory) {
             clearInterval(interval);
             setShowAwardBios(true);
-            setTimeout(() => {
-              setShowIdeInfo(true); // Show IDE info // Set loading to false once done
-            }, 1000); // Wait for 1 second before showing IDE info
+
           }
           return nextCount;
         });
@@ -68,25 +54,10 @@ const CompaqBoot: React.FC = () => {
   useEffect(() => {
     let bootTime = setTimeout(() => {
       setIsBooting(false);
-    }, 16000);
+    }, 14000);
     return () => clearTimeout(bootTime);
   }, []);
-  const triangleVariants = {
-    rotate: {
-      rotate: 360,
-      transition: {
-        duration: 2,
-        ease: "linear",
-        repeat: Infinity,
-      },
-    },
-  };
-  const orbitVariants = {
-    rotate: {
-      rotate: 360,
-      transition: { repeat: Infinity, duration: 10, ease: "linear" },
-    },
-  };
+;
   const orbitAnimation = (degreeOffset: number) => ({
     rotate: [degreeOffset, degreeOffset + 360],
     transition: { repeat: Infinity, duration: 10, ease: "linear" },
@@ -94,10 +65,10 @@ const CompaqBoot: React.FC = () => {
   const colors = ["bg-red-500", "bg-green-500", "bg-blue-500", "bg-[#ebde34]"];
   return (
     <motion.div
-      className="relative w-full h-screen bg-black text-gray-400 text-[1.4rem] "
+      className="relative w-full h-screen bg-black text-gray-400 text-base md:text-xl "
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
-      transition={{ duration: 1, delay: 15 }}
+      transition={{ duration: 1, delay: 13 }}
     >
       <motion.div
         initial={{ opacity: 1 }}
@@ -149,28 +120,28 @@ const CompaqBoot: React.FC = () => {
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 1 }}
+                  transition={{ duration: 1, delay: 0.5 }}
                 >
                   Detecting IDE Primary Master...None
                 </motion.p>
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 2 }}
+                  transition={{ duration: 1, delay: 1 }}
                 >
                   Detecting IDE Primary Slave ... None
                 </motion.p>
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 3 }}
+                  transition={{ duration: 1, delay: 1.5 }}
                 >
                   Detecting IDE Secondary Master ... None
                 </motion.p>
                 <motion.p
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 1, delay: 4 }}
+                  transition={{ duration: 1, delay: 2 }}
                 >
                   Detecting IDE Secondary Slave ... None
                 </motion.p>
@@ -179,20 +150,20 @@ const CompaqBoot: React.FC = () => {
           )}
         </motion.div>
         <div className="absolute bottom-0 w-full text-center">
-          <p>Please wait for the screen </p>
+          <p>Please wait for the screen to load</p>
         </div>
       </motion.div>
       <motion.div
         className="flex items-center justify-center bg-inherit text-white absolute top-0 left-0 h-screen w-screen"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 10.5 }}
+        transition={{ duration: 1, delay: 8.5 }}
       >
         <div className="text-center flex flex-col justify-center items-center">
-          <h1 className="text-[8rem] font-bold mb-4 text-red-700">
+          <h1 className="text-6xl md:text-9xl font-bold mb-4 text-red-700">
             WebDesktop
           </h1>
-          <div className="text-2xl flex items-center justify-center">
+          <div className="text-sm md:text-2xl flex items-center justify-center">
             Loading operating system...
             <div className="relative mx-10">
               {[0, 90, 180, 270].map((degree, index) => (

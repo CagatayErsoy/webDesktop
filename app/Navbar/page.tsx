@@ -39,7 +39,7 @@ export default function Navbar() {
   
   return (
     !isBooting ?
-    <motion.nav className="bg-third w-full fixed bottom-0 h-12 flex items-center z-[100]"
+    <motion.nav className="bg-third w-full fixed bottom-0 h-12 flex items-center z-[1000]"
     exit={{ opacity:0 }}
   initial={{ opacity:0 }}
   animate={{ opacity:1 }}
@@ -71,7 +71,7 @@ export default function Navbar() {
         {/* Dropdown Menu */}
         {isMenuOpen && (
           <div
-            className="absolute bg-third shadow-md rounded-md  left-0 bottom-12  text-main w-1/6 z-[100]"
+            className="absolute bg-third shadow-md rounded-md  left-0 bottom-12  text-main w-48 md:w-80 z-[1000]"
             onMouseLeave={() => setIsMenuOpen(false)}
           >
             <div className="flex flex-col gap-3 text-center  divide-y divide-blue-200 z-[100]">
@@ -91,7 +91,7 @@ export default function Navbar() {
 
               {/* Submenu */}
               {isSubMenuOpen && (
-                <div className="absolute left-full bottom-12 bg-third flex flex-col gap-3 w-full" onMouseLeave={toggleSubMenu}>
+                <div className="absolute left-full bottom-14 bg-third flex flex-col gap-3 w-48 md:w-80" onMouseLeave={toggleSubMenu}>
                 <NavbarIcon key="snake" iconKey="snake" src="/icons/snake.png" label="snake.exe"/>
                 <NavbarIcon key="virus" iconKey="virus" src="/icons/alert.png" label="virus.exe"/>
                 </div>
