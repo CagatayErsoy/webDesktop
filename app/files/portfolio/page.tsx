@@ -12,7 +12,7 @@ export default function Contact() {
   const [isOpen, setIsOpen] = useState(false);
   const [file, setFile] = useState("");
   const [stackblitzId, setstackblitzId] = useState("");
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(false);
 
   function embedProject(id: string, file: string) {
     // Create a new div element

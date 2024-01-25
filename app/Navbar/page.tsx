@@ -13,7 +13,7 @@ import { motion } from "framer-motion";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSubMenuOpen, setIsSubMenuOpen] = useState(false);
-  const {setIsBooting,isBooting,windows,setWindows,closeAllWindows}=useGlobalContext()
+  const {setIsBooting,isBooting,closeAllWindows}=useGlobalContext()
 
 
   const toggleMenu = () => {

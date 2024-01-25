@@ -9,7 +9,7 @@ export default function Contact() {
   const [from, setFrom] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(false);
   const [emailSuccess,setEmailSuccess]=useState(false)
   const { windows } = useGlobalContext();
   const handleSubmit = () => {

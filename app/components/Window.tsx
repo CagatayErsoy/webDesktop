@@ -25,7 +25,7 @@ const Window: FC<WindowProps> = ({
   const [helperCount, setHelperCount] = useState(0);
   const [blackBg, setBlackBg] = useState(false);
   const [zIndex, setZIndex] = useState("");
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(false);
   const controls = useDragControls();
   const { refElement, addStack, stack, removeStack, windows, setOpen } =
     useGlobalContext();

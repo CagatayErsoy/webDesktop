@@ -13,7 +13,7 @@ import icons from "../utilities/IconsData";
 
 export default function Files() {
   const borderRef = useRef<HTMLElement>(null);
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(false);
   const { setParentRef, setOpen, windows, addStack, removeStack, stack } =
     useGlobalContext();
 

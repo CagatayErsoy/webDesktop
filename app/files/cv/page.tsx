@@ -20,7 +20,7 @@ interface TextStyle {
 }
 export default function Cv() {
   const { windows } = useGlobalContext();
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(false);
   const [textStyle, setTextStyle] = useState<TextStyle>({
     bold: false,
     italic: false,
