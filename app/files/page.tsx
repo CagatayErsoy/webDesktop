@@ -5,7 +5,7 @@ import About from "./about/page";
 import Portfolio from "./portfolio/page";
 import Terminal from "./terminal/page";
 import Snake from "./snake/page";
-import React, { FC, useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useGlobalContext } from "../Context/appcontext";
 import { motion } from "framer-motion";
 import icons from "../utilities/IconsData";

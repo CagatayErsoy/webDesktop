@@ -8,7 +8,7 @@ import { FaAlignJustify } from "react-icons/fa6";
 import { MdDownload } from "react-icons/md";
 import Tippy from "@tippyjs/react";
 import "tippy.js/dist/tippy.css";
-import 'tippy.js/themes/light.css';
+import "tippy.js/themes/light.css";
 import { useGlobalContext } from "@/app/Context/appcontext";
 import Window from "@/app/components/Window";
 import { useEffect, useState } from "react";
@@ -32,8 +32,8 @@ export default function Cv() {
       setIsMobile(window.innerWidth < 768);
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
   const toggleStyle = (style: keyof TextStyle) => {
     setTextStyle({ ...textStyle, [style]: !textStyle[style] });
@@ -49,17 +49,17 @@ export default function Cv() {
       windowHeight="70vh"
       id={windows.cvWindow.id}
       title="CV"
-      defLeft={isMobile?"5vw":"15vw"}
+      defLeft={isMobile ? "5vw" : "15vw"}
     >
       <div className="flex justify-left items-center  p-2 gap-3 shadow-md bg-[#00669D] absolute z-10  justify-self-center text-third">
-        <Tippy content="Toggle Bold" theme="pink_theme" >
+        <Tippy content="Toggle Bold" theme="pink_theme">
           <button onClick={() => toggleStyle("bold")}>
             <FaBold />
           </button>
         </Tippy>
 
         <Tippy content="Toggle Italic" theme="pink_theme">
-          <button onClick={() => toggleStyle("italic")} >
+          <button onClick={() => toggleStyle("italic")}>
             <FaItalic />
           </button>
         </Tippy>
@@ -88,15 +88,14 @@ export default function Cv() {
         </Tippy>
 
         <Tippy content="Downland as PDF" theme="pink_theme">
-          
-            <a
-              href="https://drive.google.com/uc?export=download&id=16VxPbdOE5S7HTD7ANACf2mT5RIFhxE2t"
-              target="_blank"
-            
-            >
-              <MdDownload />
-            </a>
-          
+          <a
+            href="https://docs.google.com/document/d/1Hl8vA11E5OrtkZ5zdUsGGKEHfKFovLZcLz3APrWKD0Y/export?format=pdf"
+            download="CagatayErsoy_Resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <MdDownload />
+          </a>
         </Tippy>
       </div>
 
@@ -116,38 +115,62 @@ export default function Cv() {
           </p>
 
           <div className="mt-4">
-            <h2 className="text-2xl font-bold text-main">- Technical Skills -</h2>
-            <li><span className="text-main">Programming Languages:</span> JavaScript/TypeScript, C++</li>
+            <h2 className="text-2xl font-bold text-main">
+              - Technical Skills -
+            </h2>
             <li>
-             <span className="text-main">Web Technologies: </span> React, Angular, Material UI, Angular Material,
-              TailwindCSS, Bootstrap, SCSS/SASS, Three.js, Rxjs, Formik,
-              Storybook, Leaflet.js, Node.js, Express.js, Nest.js, Airtable
+              <span className="text-main">Programming Languages:</span>{" "}
+              JavaScript/TypeScript, C++
             </li>
-            <li> <span className="text-main">Development Methodologies:</span> SCRUM, Agile</li>
-            <li><span className="text-main">Databases:</span> SQL, MongoDB</li>
-            <li><span className="text-main">Project Management:</span> JIRA</li>
-            <li><span className="text-main">Version Control:</span> Git, GitHub</li>
-            <li><span className="text-main">IDE:</span> Visual Studio Code, Stackblitz</li>
-            <li><span className="text-main">Testing:</span> Postman, Jasmine</li>
+            <li>
+              <span className="text-main">Web Technologies: </span> React,
+              Angular, Material UI, Angular Material, TailwindCSS, Bootstrap,
+              SCSS/SASS, Three.js, Rxjs, Formik, Storybook, Leaflet.js, Node.js,
+              Express.js, Nest.js, Airtable
+            </li>
+            <li>
+              {" "}
+              <span className="text-main">Development Methodologies:</span>{" "}
+              SCRUM, Agile
+            </li>
+            <li>
+              <span className="text-main">Databases:</span> SQL, MongoDB
+            </li>
+            <li>
+              <span className="text-main">Project Management:</span> JIRA
+            </li>
+            <li>
+              <span className="text-main">Version Control:</span> Git, GitHub
+            </li>
+            <li>
+              <span className="text-main">IDE:</span> Visual Studio Code,
+              Stackblitz
+            </li>
+            <li>
+              <span className="text-main">Testing:</span> Postman, Jasmine
+            </li>
           </div>
 
           <div className="mt-4">
             <h2 className="text-2xl font-bold"> - Professional Experience -</h2>
             <p className="text-lg ">
-              Civil Engineer (Turkey) - <span className="text-sm">Sept 2014-Oct 2018</span> 
+              Civil Engineer (Turkey) -{" "}
+              <span className="text-sm">Sept 2014-Oct 2018</span>
             </p>
 
             <p className="text-lg">
-              Allied Voices – Front End Developer (Remote) - <span className="text-sm">Jan 2021 - May 2022</span>
+              Allied Voices – Front End Developer (Remote) -{" "}
+              <span className="text-sm">Jan 2021 - May 2022</span>
             </p>
 
             <p className="text-lg">
-              Antra – Full Stack Developer (Remote) - <span className="text-sm">May 2022 - February 2023</span>
+              Antra – Full Stack Developer (Remote) -{" "}
+              <span className="text-sm">May 2022 - February 2023</span>
             </p>
 
             <p className="text-lg ">
-              Tento (Freelancer) – Front End Developer (Remote) - <span className="text-sm">July 2023 -
-              October 2023</span>
+              Tento (Freelancer) – Front End Developer (Remote) -{" "}
+              <span className="text-sm">July 2023 - October 2023</span>
             </p>
           </div>
 
@@ -155,11 +178,13 @@ export default function Cv() {
             <h2 className="text-2xl font-bold">- Education -</h2>
             <p>
               City College of San Francisco, San Francisco, CA - Associate
-              Degree in CNIT Front End Web Development - <span className="text-sm">August 2019 - May 2022</span>
+              Degree in CNIT Front End Web Development -{" "}
+              <span className="text-sm">2019 - 2022</span>
             </p>
             <p>
               Ondokuz Mayis University - Bachelor of Science in Civil
-              Engineering - September -<span className="text-sm">2011 - May 2015</span>
+              Engineering - September -
+              <span className="text-sm">2011 - May 2015</span>
             </p>
           </div>
           <div className="mt-4">
