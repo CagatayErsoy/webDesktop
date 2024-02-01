@@ -1,24 +1,14 @@
 "use client";
 import Window from "@/app/components/Window";
 import { useGlobalContext } from "@/app/Context/appcontext";
-import { useEffect, useState } from "react";
+import useWindowSize from "@/app/hooks/useWindowSize";
 
 export default function About() {
   const { windows } = useGlobalContext();
   const units = 101; // Total units
   const majorUnit = 5; // Every 10th unit is a major unit
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-   
-      const handleResize = () => {
-        setIsMobile(window.innerWidth < 768);
-      };
-  
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    
-  
-  }, []);
+  const isMobile = useWindowSize();
+
   return (
     <Window
       windowWidth="70vw"

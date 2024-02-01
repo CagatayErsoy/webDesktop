@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import Files from "./files/page";
 import Navbar from "./Navbar/page";
 import { useGlobalContext } from "./Context/appcontext";

@@ -12,6 +12,7 @@ import "tippy.js/themes/light.css";
 import { useGlobalContext } from "@/app/Context/appcontext";
 import Window from "@/app/components/Window";
 import { useEffect, useState } from "react";
+import useWindowSize from "@/app/hooks/useWindowSize";
 interface TextStyle {
   bold: boolean;
   italic: boolean;
@@ -20,21 +21,14 @@ interface TextStyle {
 }
 export default function Cv() {
   const { windows } = useGlobalContext();
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useWindowSize();
   const [textStyle, setTextStyle] = useState<TextStyle>({
     bold: false,
     italic: false,
     underline: false,
     align: "left",
   });
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
   const toggleStyle = (style: keyof TextStyle) => {
     setTextStyle({ ...textStyle, [style]: !textStyle[style] });
   };

@@ -8,15 +8,15 @@ import { useEffect, useRef, useState } from "react";
 import helpElement from "./helpElement";
 import fileListElement from "./fileListElement";
 import generate from "./generate";
+import useWindowSize from "@/app/hooks/useWindowSize";
 export default function Terminal() {
   const [output, setOutput] = useState<(string | JSX.Element|null)[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
-  const router = useRouter();
   const { windows ,setIsBooting,closeAllWindows,setOpen,addStack,setShowVirus} = useGlobalContext();
   const [command, setCommand] = useState<string>("");
-  const [hash, setHash] = useState("#");
+  const isMobile=useWindowSize()
   const [isLoading, setIsLoading] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+ 
   const baseText =
     "Welcome to smallBash for webDesktop, type help for guidelines..." as string;
   const count = useMotionValue(0);
@@ -34,24 +34,7 @@ export default function Terminal() {
   );
   const outputRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    // Check if the last child is an HTMLElement and then scroll it into view
-    const lastOutput = outputRef.current?.lastChild;
-    if (lastOutput instanceof HTMLElement) {
-      lastOutput.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [output]);
-  useEffect(() => {
-    const focusInput = () => {
-      inputRef.current?.focus();
-    };
 
-    focusInput();
-
-    const focusInterval = setInterval(focusInput, 500);
-
-    return () => clearInterval(focusInterval);
-  }, []);
   const animateDots = () => {
     let dotString = '';
     const maxDots = 5;
@@ -138,15 +121,39 @@ export default function Terminal() {
     }
   };
  
-
   useEffect(() => {
-    const controls = animate(count, baseText.length, {
-      type: "tween", // Not really needed because adding a duration will force "tween"
-      duration: 1,
-      ease: "easeInOut",
-    });
-    return controls.stop;
+    // Check if the last child is an HTMLElement and then scroll it into view
+    const lastOutput = outputRef.current?.lastChild;
+    if (lastOutput instanceof HTMLElement) {
+      lastOutput.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [output]);
+  useEffect(() => {
+    const focusInput = () => {
+      inputRef.current?.focus();
+    };
+
+    focusInput();
+
+    const focusInterval = setInterval(focusInput, 500);
+
+    return () => clearInterval(focusInterval);
   }, []);
+  useEffect(() => {
+    if(windows.terminalWindow.isOpen){
+      count.set(0);
+       animate(count, baseText.length, {
+        type: "tween", 
+        duration: 1,
+        ease: "easeInOut",
+      });
+     
+    }
+    if(!windows.terminalWindow.isOpen){
+      setOutput([])
+    }
+ 
+  }, [windows.terminalWindow.isOpen]);
   useEffect(() => {
     // ... existing useEffects
 
@@ -155,21 +162,8 @@ export default function Terminal() {
       setOutput(prev => [...prev, 'Loading']);
     }
   }, [isLoading]);
-  useEffect(()=>{
-    if(!windows.terminalWindow.isOpen){
-      setOutput([])
-    }
 
-  },
-  [windows])
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
   return (
     <Window
       windowWidth="70vw"
@@ -202,8 +196,7 @@ export default function Terminal() {
           
         </div>
 
-        {/*         
-        <div>{hash} Loading...</div> */}
+       
       </div>
     </Window>
   );

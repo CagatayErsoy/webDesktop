@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 
 import { useGlobalContext } from "@/app/Context/appcontext";
+import useWindowSize from "@/app/hooks/useWindowSize";
 const initialSnake = [
   [4, 10],
   [4, 10],
@@ -31,7 +32,7 @@ const Snake: React.FC = () => {
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useWindowSize();
  
 
   useInterval(() => runGame(), delay);
@@ -143,14 +144,7 @@ const Snake: React.FC = () => {
 
     setDirection(newDirection);
   }
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
   return (
     <Window
       windowWidth="70vw"

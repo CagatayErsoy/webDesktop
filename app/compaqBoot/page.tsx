@@ -4,13 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useGlobalContext } from "../Context/appcontext";
 import EnergyStarLogo from "./EnergyStarLogo";
 
-import {
-  animate,
-  motion,
-  spring,
-  useMotionValue,
-  useTransform,
-} from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 
 const CompaqBoot: React.FC = () => {
   const { setIsBooting } = useGlobalContext();
@@ -35,7 +29,6 @@ const CompaqBoot: React.FC = () => {
           if (nextCount >= maxMemory) {
             clearInterval(interval);
             setShowAwardBios(true);
-
           }
           return nextCount;
         });
@@ -57,7 +50,6 @@ const CompaqBoot: React.FC = () => {
     }, 14000);
     return () => clearTimeout(bootTime);
   }, []);
-;
   const orbitAnimation = (degreeOffset: number) => ({
     rotate: [degreeOffset, degreeOffset + 360],
     transition: { repeat: Infinity, duration: 10, ease: "linear" },

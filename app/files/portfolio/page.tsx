@@ -6,13 +6,14 @@ import sdk from "@stackblitz/sdk";
 import { useEffect, useState } from "react";
 import ReactProjects from "@/app/utilities/ReactProjects";
 import AngularProjects from "@/app/utilities/AngularProjects";
+import useWindowSize from "@/app/hooks/useWindowSize";
 
 export default function Contact() {
   const { windows } = useGlobalContext();
   const [isOpen, setIsOpen] = useState(false);
   const [file, setFile] = useState("");
   const [stackblitzId, setstackblitzId] = useState("");
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useWindowSize();
 
   function embedProject(id: string, file: string) {
     // Create a new div element
@@ -52,14 +53,7 @@ export default function Contact() {
       };
     }
   }, [isOpen]);
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
   return (
     <Window
       windowWidth="70vw"

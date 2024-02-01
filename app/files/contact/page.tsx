@@ -3,13 +3,14 @@
 import { useGlobalContext } from "@/app/Context/appcontext";
 import { sendEmail } from "@/app/actions/sendEmail";
 import Window from "@/app/components/Window";
-import { FormEvent, useEffect, useState } from "react";
+import useWindowSize from "@/app/hooks/useWindowSize";
+import { useEffect, useState } from "react";
 export default function Contact() {
   const [to, setTo] = useState("cagatay.ersoy1@gmail.com");
   const [from, setFrom] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useWindowSize();
   const [emailSuccess,setEmailSuccess]=useState(false)
   const { windows } = useGlobalContext();
   const handleSubmit = () => {
@@ -20,14 +21,7 @@ export default function Contact() {
     setMessage("");
     setEmailSuccess(true)
   };
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+ 
   useEffect(()=>{
     if(emailSuccess){
       let timeout=setTimeout(()=>{
