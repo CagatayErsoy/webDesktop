@@ -83,7 +83,7 @@ export default function Cv() {
 
         <Tippy content="Downland as PDF" theme="pink_theme">
           <a
-            href="https://docs.google.com/document/d/1Hl8vA11E5OrtkZ5zdUsGGKEHfKFovLZcLz3APrWKD0Y/export?format=pdf"
+            href="https://docs.google.com/document/d/1Li5MlmmLy-kKDd3xAyL2wSiF2au_BaEk2fZeLXnGarA/export?format=pdf"
             download="CagatayErsoy_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
