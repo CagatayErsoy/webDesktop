@@ -12,8 +12,8 @@ const windows:Windows = {
       id: "contactWindow",
       isOpen: false,
     },
-    cvWindow: {
-      id: "cvWindow",
+    resumeWindow: {
+      id: "resumeWindow",
       isOpen: false,
     
     },

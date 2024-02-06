@@ -23,7 +23,7 @@ export default function Terminal() {
   const commandsList:{[key:string]:string}= {
     "about.txt": "aboutWindow",
     "contact.mail": "contactWindow",
-    "cv.txt": "cvWindow",
+    "resume.txt": "resumeWindow",
     "portfolio.bat": "portfolioWindow",
     "snake.app": "snakeWindow",
   };

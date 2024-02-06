@@ -1,6 +1,6 @@
 "use client";
 import Contact from "./contact/page";
-import Cv from "./cv/page";
+import Resume from "./resume/page";
 import About from "./about/page";
 import Portfolio from "./portfolio/page";
 import Terminal from "./terminal/page";
@@ -60,7 +60,7 @@ export default function Files() {
       <Portfolio></Portfolio>
       <Terminal></Terminal>
       <About></About>
-      <Cv></Cv>
+      <Resume></Resume>
       <Contact></Contact>
       <Snake></Snake>
       {Object.keys(icons).map((key) => {

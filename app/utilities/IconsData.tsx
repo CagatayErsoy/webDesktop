@@ -19,10 +19,10 @@ const icons:Icons= {
     label: "Contact.mail",
 
   },
-  cv: {
-    key: "cv-icon",
+  resume: {
+    key: "resume-icon",
     src: "/icons/doc.png",
-    label: "Cv.doc",
+    label: "Resume.doc",
    
   },
   portfolio: {
