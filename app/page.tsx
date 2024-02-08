@@ -9,7 +9,6 @@ CompaqBoot;
 export default function Home() {
   const { isBooting, showVirus } = useGlobalContext();
 
-
   return (
     <>
       {isBooting ? (

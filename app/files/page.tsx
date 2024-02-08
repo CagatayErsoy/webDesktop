@@ -52,17 +52,19 @@ export default function Files() {
   return (
     <motion.main
       ref={borderRef}
-      className="w-screen h-screen text-white p-10 flex flex-col items-end gap-5 2xl:gap-12 justify-center overflow-hidden"
+      className="w-screen h-screen text-white p-10 flex flex-col items-end gap-5 2xl:gap-12 justify-center overflow-hidden overscroll-none flex-wrap "
       initial={{ opacity: 0, }}
     animate={{ opacity: 1, }}
     transition={{ duration: 1 }}
     >
+   
       <Portfolio></Portfolio>
       <Terminal></Terminal>
       <About></About>
       <Resume></Resume>
       <Contact></Contact>
       <Snake></Snake>
+     
       {Object.keys(icons).map((key) => {
         const { label, src } = icons[key];
         return (
@@ -77,7 +79,7 @@ export default function Files() {
             whileTap={{ scale: 0.9 }}
             onClick={isMobile?()=>handleDoubleClick(key):undefined}
             onDoubleClick={() => handleDoubleClick(key)}
-            className="flex flex-col justify-center content-center items-center w-20 h-30 relative gap-1"
+            className="flex flex-col justify-center content-center items-center w-20 h-30  gap-1"
           >
             <div
               className="w-[4.5rem] h-[4.5rem] xl:w-[5.3rem] xl:h-[5.3rem]"

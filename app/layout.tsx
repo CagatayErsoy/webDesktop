@@ -7,9 +7,9 @@ const myFont = localFont({ src: "../public/fonts/Px437_Compaq_Port3.ttf" });
 export const metadata: Metadata = {
   title: "WebDesktop",
   description: "Created by Cagatay Ersoy,",
-  icons:{
-    icon:'./computer.png'
-  }
+  icons: {
+    icon: "./computer.png",
+  },
 };
 
 export default function RootLayout({
@@ -20,14 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={myFont.className} style={{}}>
-      <AppProvider>
-     
-        {children}
-        <Navbar></Navbar>
-       
-      </AppProvider>
-      
-       
+        <AppProvider>
+          {children}
+          <Navbar></Navbar>
+        </AppProvider>
       </body>
     </html>
   );
