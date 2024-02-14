@@ -14,7 +14,7 @@ import icons from "../utilities/IconsData";
 export default function Files() {
   const borderRef = useRef<HTMLElement>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const { setParentRef, setOpen, windows, addStack, removeStack, stack } =
+  const { setParentRef, setOpen, windows, addStack, stack } =
     useGlobalContext();
 
   const handleDoubleClick = (key: string) => {
@@ -52,7 +52,7 @@ export default function Files() {
   return (
     <motion.main
       ref={borderRef}
-      className="w-screen h-screen text-white p-10 flex flex-col items-end gap-5 2xl:gap-12 justify-center overflow-hidden overscroll-none flex-wrap "
+      className="w-screen h-screen text-white p-10 flex flex-col content-start gap-5 2xl:gap-12  overflow-hidden overscroll-none flex-wrap-reverse py-20"
       initial={{ opacity: 0, }}
     animate={{ opacity: 1, }}
     transition={{ duration: 1 }}
@@ -82,7 +82,7 @@ export default function Files() {
             className="flex flex-col justify-center content-center items-center w-20 h-30  gap-1"
           >
             <div
-              className="w-[4.5rem] h-[4.5rem] xl:w-[5.3rem] xl:h-[5.3rem]"
+              className="w-[3rem] h-[3rem] md:w-[4.5rem] md:h-[4.5rem] xl:w-[5.3rem] xl:h-[5.3rem]"
               style={{
                 backgroundImage: `url(${src}) `,
                 backgroundSize: "cover",
