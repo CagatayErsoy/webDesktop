@@ -45,7 +45,7 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [windows, setWindows] = useState<{ [key: string]: WindowProps }>(
     WindowData
   );
-  const [stack, setStack] = useState<string[]>([]);
+  const [stack, setStack] = useState<string[]>(['helpWindow']);
   const [isBooting, setIsBooting] = useState(true);
   const [showVirus, setShowVirus] = useState(false);
 
@@ -99,7 +99,7 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       if (newStack.length > 6) {
         newStack.pop();
       }
-
+      console.log(newStack,windows.helpWindow)
       return newStack;
     });
   };

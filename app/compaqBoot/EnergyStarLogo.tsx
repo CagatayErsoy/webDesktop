@@ -15,7 +15,7 @@ const EnergyStarLogo: React.FC = () => {
     animate={{ opacity: 1,  }}
     transition={{ duration: 1 }}>
            
-            <div className={`text-yellow text-[7rem] border-t-4 border-yellow rounded-full`  }>
+            <div className={`text-def_yellow text-[7rem] border-t-4 border-def_yellow rounded-full`  }>
             <div className='flex items-center justify-center'>  <span className={ brush.className}>energy </span> 
                 <AiOutlineStar /> </div>
                

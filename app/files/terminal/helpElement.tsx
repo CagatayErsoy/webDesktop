@@ -5,17 +5,17 @@ const helpElement: JSX.Element = (
       <p className="text-forth">This is the webDesktop limited bash, available commands:</p>
       <div className="flex gap-11">
         <ul>
-          <li className="text-yellow">ls</li>
-          <li className="text-yellow">help</li>
-          <li className="text-yellow">clear</li>
-          <li className="text-yellow">restart</li>
-          <li className="text-yellow">about.txt</li>
-          <li className="text-yellow">contact.mail</li>
-          <li className="text-yellow">cv.txt</li>
-          <li className="text-yellow">portfolio.bat</li>
-          <li className="text-yellow">snake.app</li>
-          <li className="text-yellow">virus.exe</li>
-          <li className="text-yellow">openai.ask:</li>
+          <li className="text-def_yellow">ls</li>
+          <li className="text-def_yellow">help</li>
+          <li className="text-def_yellow">clear</li>
+          <li className="text-def_yellow">restart</li>
+          <li className="text-def_yellow">about.txt</li>
+          <li className="text-def_yellow">contact.mail</li>
+          <li className="text-def_yellow">cv.txt</li>
+          <li className="text-def_yellow">portfolio.bat</li>
+          <li className="text-def_yellow">snake.app</li>
+          <li className="text-def_yellow">virus.exe</li>
+          <li className="text-def_yellow">openai.ask:</li>
          
         </ul>
         <ul>

@@ -34,10 +34,8 @@ const Window: FC<WindowProps> = ({
     if (windows[id].isOpen) {
       setIsOpen(true);
       setZIndex(`${100 - stack.indexOf(id)}0`);
-    }
-    else{
-     
-      setIsOpen(false)
+    } else {
+      setIsOpen(false);
     }
   }, [windows]);
 
@@ -50,7 +48,7 @@ const Window: FC<WindowProps> = ({
     setIsOpen(false);
     removeStack(id);
     setZIndex("");
-    setIsFullScreen(false)
+    setIsFullScreen(false);
   }, [windows]);
   const handleBackgroundCover = () => {
     addStack(id);
@@ -67,8 +65,8 @@ const Window: FC<WindowProps> = ({
       setIsMobile(window.innerWidth < 768);
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return isOpen ? (
@@ -87,7 +85,7 @@ const Window: FC<WindowProps> = ({
       style={{
         left: isFullScreen ? 0 : defLeft,
         top: isFullScreen ? 0 : "15vh",
-        width: isFullScreen ? "100vw" : (isMobile ? "95vw" : windowWidth),
+        width: isFullScreen ? "100vw" : isMobile ? "95vw" : windowWidth,
         height: isFullScreen ? "100vh" : windowHeight,
         zIndex: zIndex,
       }}

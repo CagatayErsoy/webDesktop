@@ -19,7 +19,7 @@ const config: Config = {
         'terminal_text':"#33FF00",
         'terminal_bg':"#0e0e1b",
         'second_blue':"#3a65a9",
-        'yellow':'#F9F871'
+        'def_yellow':'#F9F871'
 
       }
     },

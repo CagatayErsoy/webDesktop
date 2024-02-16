@@ -85,14 +85,15 @@ export default function Navbar() {
               </div >
               {/* Submenu Trigger */}
               <button onClick={toggleSubMenu}   className="px-3 py-2 flex justify-start gap-2 items-center hover:bg-forth group">
-              <span className="text-forth group-hover:text-main text-3xl"><FaFolder /></span>
+              <span className="text-forth group-hover:text-main text-3xl xl:text-4xl"><FaFolder /></span>
               <div className="px-2 text-main group-hover:text-secondary" >Others</div>
               </button>
 
               {/* Submenu */}
               {isSubMenuOpen && (
-                <div className="absolute left-full bottom-14 bg-third flex flex-col gap-3 w-48 md:w-80" onMouseLeave={toggleSubMenu}>
+                <div className="absolute left-full bottom-16 bg-third flex flex-col gap-3 w-48 md:w-80" onMouseLeave={toggleSubMenu}>
                 <NavbarIcon key="snake" iconKey="snake" src="/icons/snake.png" label="snake.exe"/>
+                <NavbarIcon key="help" iconKey="help" src="/icons/help.png" label="help.guide"/>
                 <NavbarIcon key="virus" iconKey="virus" src="/icons/alert.png" label="virus.exe"/>
                 </div>
               )}

@@ -8,7 +8,7 @@ import ReactProjects from "@/app/utilities/ReactProjects";
 import AngularProjects from "@/app/utilities/AngularProjects";
 import useWindowSize from "@/app/hooks/useWindowSize";
 
-export default function Contact() {
+export default function Portfolio() {
   const { windows } = useGlobalContext();
   const [isOpen, setIsOpen] = useState(false);
   const [file, setFile] = useState("");

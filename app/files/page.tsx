@@ -9,6 +9,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useGlobalContext } from "../Context/appcontext";
 import { motion } from "framer-motion";
 import icons from "../utilities/IconsData";
+import Help from "./help/page";
 
 
 export default function Files() {
@@ -64,6 +65,7 @@ export default function Files() {
       <Resume></Resume>
       <Contact></Contact>
       <Snake></Snake>
+      <Help></Help>
      
       {Object.keys(icons).map((key) => {
         const { label, src } = icons[key];
@@ -82,7 +84,7 @@ export default function Files() {
             className="flex flex-col justify-center content-center items-center w-20 h-30  gap-1"
           >
             <div
-              className="w-[3rem] h-[3rem] md:w-[4.5rem] md:h-[4.5rem] xl:w-[5.3rem] xl:h-[5.3rem]"
+              className="w-[3rem] h-[3rem] md:w-[4.5rem] md:h-[4.5rem] 2xl:w-[5rem] 2xl:h-[5rem]"
               style={{
                 backgroundImage: `url(${src}) `,
                 backgroundSize: "cover",

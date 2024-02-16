@@ -36,6 +36,11 @@ const windows:Windows = {
       id: "snakeWindow",
       isOpen: false,
     },
+    helpWindow: {
+      id: "helpWindow",
+      isOpen: true,
+    },
+
     };
     
   export default windows
