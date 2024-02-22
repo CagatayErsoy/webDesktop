@@ -76,7 +76,7 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     });
   };
   const handleVirus=()=>{
-   console.log("here")
+  
     setShowVirus(true)
     closeAllWindows()
   }
@@ -99,7 +99,7 @@ const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
       if (newStack.length > 6) {
         newStack.pop();
       }
-      console.log(newStack,windows.helpWindow)
+     
       return newStack;
     });
   };

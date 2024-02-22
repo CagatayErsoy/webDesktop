@@ -181,19 +181,19 @@ export default function Terminal() {
         </div>
 
         <div className="flex items-center">
+        
+          <span className="text-terminal_text text-lg blink-cursor relative">
+            {" "}
+            C:/ {command}
+          </span>
           <input
             ref={inputRef}
             type="text"
             value={command}
             onChange={(e) => setCommand(e.target.value)}
             onKeyPress={handleInputKeyPress}
-            className="w-1 bg-transparent  outline-none text-transparent "
+            className={`bg-transparent  outline-none text-transparent ${isMobile?"w-10":"w-1"}` }
           />
-          <span className="text-terminal_text text-lg blink-cursor relative">
-            {" "}
-            C:/ {command}
-          </span>
-          
         </div>
 
        
