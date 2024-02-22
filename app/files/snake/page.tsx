@@ -20,8 +20,8 @@ const initialSnake = [
 const initialApple = [14, 10];
 const scale = 50;
 const timeDelay = 100;
-const canvasX = 1000 ;
-const canvasY = 1000
+const canvasX = 1000;
+const canvasY = 1000;
 const Snake: React.FC = () => {
   const { windows } = useGlobalContext();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -32,8 +32,8 @@ const Snake: React.FC = () => {
   const [gameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
+  const [touchDirection, setTouchDirection] = useState("");
   const isMobile = useWindowSize();
- 
 
   useInterval(() => runGame(), delay);
   useEffect(() => {
@@ -58,13 +58,68 @@ const Snake: React.FC = () => {
       }
     }
   }, [snake, apple, gameOver]); // Removed isImageLoaded as it's not applicable for fillRect
+  useEffect(() => {
+    let newDirection;
+    const direction = touchDirection || ""; // Use touchDirection if available
+    switch (direction) {
+      case "left":
+        newDirection = [-1, 0];
+        break;
+      case "up":
+        newDirection = [0, -1];
+        break;
+      case "right":
+        newDirection = [1, 0];
+        break;
+      case "down":
+        newDirection = [0, 1];
+        break;
+      default:
+        return;
+    }
 
+    // Check if the new direction is the opposite of the current direction
+    if (
+      newDirection[0] === -direction[0] &&
+      newDirection[1] === -direction[1]
+    ) {
+      // Prevent the snake from reversing directly into itself
+      return;
+    }
+
+    setDirection(newDirection);
+  }, [touchDirection]);
   function handleSetScore() {
     if (score > highScore) {
       setHighScore(score);
       localStorage.setItem("snakeScore", JSON.stringify(score));
     }
   }
+  const handleTouchInput = (newDirection: string) => {
+    let x = direction[0];
+    let y = direction[1];
+
+    switch (newDirection) {
+      case "left":
+        if (x === 1) return; // Prevent going left if currently moving right
+        setDirection([-1, 0]);
+        break;
+      case "up":
+        if (y === 1) return; // Prevent going up if currently moving down
+        setDirection([0, -1]);
+        break;
+      case "right":
+        if (x === -1) return; // Prevent going right if currently moving left
+        setDirection([1, 0]);
+        break;
+      case "down":
+        if (y === -1) return; // Prevent going down if currently moving up
+        setDirection([0, 1]);
+        break;
+      default:
+        return;
+    }
+  };
 
   function play() {
     setSnake(initialSnake);
@@ -147,18 +202,18 @@ const Snake: React.FC = () => {
 
   return (
     <Window
-    windowWidth={isMobile ? "100vw" : "70vw"}
+      windowWidth={isMobile ? "100vw" : "70vw"}
       windowHeight="70vh"
       id={windows.snakeWindow.id}
       title="snake"
-      defLeft={isMobile?"0":"15vw"}
+      defLeft={isMobile ? "0" : "15vw"}
     >
       <div
-        className="gameContainer bg-main h-full w-full flex justify-center items-center gap-8 "
+        className="gameContainer bg-main h-full w-full flex flex-col-reverse justify-end items-center gap-16 lg:gap-8 lg:flex-row lg:justify-center"
         onKeyDown={(e) => changeDirection(e)}
         tabIndex={0}
       >
-        <div className="controlPanel flex lg:flex-col items-center justify-between gap-8 absolute bottom-0  lg:relative">
+        <div className="flex lg:flex-col justify-center items-center gap-8  lg:relative h-6 px-2">
           <div className="scoreBox">
             <h2>Score: {score}</h2>
             <h2>High Score: {highScore}</h2>
@@ -169,9 +224,36 @@ const Snake: React.FC = () => {
           >
             Play
           </button>
+
+          <div className="grid grid-template-rows-[auto_auto_auto] grid-template-cols-[auto_auto_auto] gap-1 ">
+            <button
+              onClick={() => handleTouchInput("up")}
+              className="  row-start-1 col-start-2 border border-green-500 text-green-500 p-2 focus:bg-green-500 hover:text-white"
+            >
+              <FaArrowUp />
+            </button>
+            <button
+              onClick={() => handleTouchInput("left")}
+              className="row-start-2 col-start-1 border border-green-500 text-green-500 p-2 focus:bg-green-500 hover:text-white"
+            >
+              <FaArrowLeft />
+            </button>
+            <button
+              onClick={() => handleTouchInput("down")}
+              className="row-start-2 col-start-2 border border-green-500 text-green-500 p-2 focus:bg-green-500 hover:text-white"
+            >
+              <FaArrowDown />
+            </button>
+            <button
+              onClick={() => handleTouchInput("right")}
+              className="row-start-2 col-start-3 border border-green-500 text-green-500 p-2 focus:bg-green-500 hover:text-white"
+            >
+              <FaArrowRight />
+            </button>
+          </div>
         </div>
         <canvas
-          className="playArea bg-black lg:w-[585px] lg:h-[440px] w-[340px] h-[340px]"
+          className="playArea bg-black lg:w-[585px] lg:h-[440px] w-full h-[300px]"
           ref={canvasRef}
           width={`${canvasX}px`}
           height={`${canvasY}px`}
@@ -184,7 +266,8 @@ const Snake: React.FC = () => {
         <div className="lg:flex lg:flex-col items-center justify-between  gap-3 w-[10rem] hidden">
           <p>
             {" "}
-            Click <span className="text-terminal_text">Play</span> for start the game, use your
+            Click <span className="text-terminal_text">Play</span> for start the
+            game, use your
             <span className="flex text-terminal_text">
               <FaArrowUp />
               <FaArrowLeft />
