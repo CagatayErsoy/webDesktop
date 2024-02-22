@@ -35,13 +35,14 @@ export default function Help() {
   };
   return (
     <Window
-      windowWidth="70vw"
+      windowWidth={isMobile ? "100vw" : "70vw"}
       windowHeight="70vh"
       id={windows.helpWindow.id}
-      defLeft={isMobile ? "5vw" : "15vw"}
+      defLeft={isMobile ? "0" : "15vw"}
       title="Help"
     >
-      <div className="bg-gray-400 text-main  flex items-center ">
+      <div className="flex flex-col bg-blue-900 w-full">
+      <div className="bg-gray-400 text-main  flex items-center  w-full">
         <div className="bg-gray-400 p-2 h-full text-xl flex gap-2">
           {" "}
         
@@ -61,7 +62,7 @@ export default function Help() {
         </div>
         
       </div>
-      <div className="font-mono bg-blue-900 text-white p-8">
+      <div className="font-mono  text-white p-8 w-full">
         <h1 className="text-yellow-300 underline text-3xl">
           Welcome to My Digital Playground!
         </h1>
@@ -150,6 +151,8 @@ export default function Help() {
           website; it&apos;s an adventure. 😎
         </motion.p>
       </div>
+      </div>
+      
     </Window>
   );
 }

@@ -147,11 +147,11 @@ const Snake: React.FC = () => {
 
   return (
     <Window
-      windowWidth="70vw"
+    windowWidth={isMobile ? "100vw" : "70vw"}
       windowHeight="70vh"
       id={windows.snakeWindow.id}
       title="snake"
-      defLeft={isMobile?"5vw":"15vw"}
+      defLeft={isMobile?"0":"15vw"}
     >
       <div
         className="gameContainer bg-main h-full w-full flex justify-center items-center gap-8 "

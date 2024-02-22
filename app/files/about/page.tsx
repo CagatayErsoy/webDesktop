@@ -11,32 +11,15 @@ export default function About() {
 
   return (
     <Window
-      windowWidth="70vw"
+    windowWidth={isMobile ? "100vw" : "70vw"}
       windowHeight="70vh"
       id={windows.aboutWindow.id}
       title="About"
-      defLeft={isMobile?"5vw":"15vw"}
+      defLeft={isMobile?"0":"15vw"}
     >
       <section className="py-20  bg-main  flex flex-col justify-center text-main items-center z-[-2]">
-      {/* Horizontal Ruler */}
-      
-      {/* <div className="lg:flex hidden absolute top-10 left-auto bg-second_blue h-6 px-5 z-10 ">
-          {[...Array(units)].map((_, index) => (
-            <div key={index} className={`w-2 ${index % majorUnit === 0 ? 'border-b-2' : 'border-b'} border-secondary`}>
-              {index % majorUnit === 0 && <span className="text-xs text-secondary">{index}</span>}
-            </div>
-          ))}
-        </div> */}
-
-        {/* Vertical Ruler */}
-        {/* <div className=" lg:flex hidden flex-col absolute top-auto left-4 bg-second_blue py-5">
-          {[...Array(units)].map((_, index) => (
-            <div key={index} className={`h-2 ${index % majorUnit === 0 ? 'border-r-2' : 'border-r'} border-secondary`}>
-              {index % majorUnit === 0 && <span className="text-xs text-secondary">{index}</span>}
-            </div>
-          ))}
-        </div> */}
-        <div className="bg-white  lg:w-[793px] h-[1123] md:w-[40rem] w-96 p-12 drop-shadow-2xl page ">
+   
+        <div className="bg-white  lg:w-[793px] h-[1123]  w-full p-12 drop-shadow-2xl page ">
           
           <h2 className="text-xl font-bold">About Me</h2>
 

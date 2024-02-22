@@ -166,11 +166,11 @@ export default function Terminal() {
 
   return (
     <Window
-      windowWidth="70vw"
+    windowWidth={isMobile ? "100vw" : "70vw"}
       windowHeight="70vh"
       id={windows.terminalWindow.id}
       title="Terminal"
-      defLeft={isMobile?"5vw":"15vw"}
+      defLeft={isMobile?"0":"15vw"}
     >
       <div className="bg-[#0e0e1b] p-4 rounded shadow-md text-terminal_text h-full text-lg overflow-auto ">
         <motion.span className="text-terminal_text">{displayText}</motion.span>

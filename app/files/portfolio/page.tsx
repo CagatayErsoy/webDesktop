@@ -56,10 +56,10 @@ export default function Portfolio() {
 
   return (
     <Window
-      windowWidth="70vw"
+    windowWidth={isMobile ? "100vw" : "70vw"}
       windowHeight="70vh"
       id={windows.portfolioWindow.id}
-      defLeft={isMobile?"5vw":"15vw"}
+      defLeft={isMobile?"0":"15vw"}
       title="Portfolio"
     >
       <div className="bg-terminal_bg text-green-400 lg:p-10 px-2 py-5 rounded shadow-md h-full w-full overflow-auto flex flex-col gap-8">

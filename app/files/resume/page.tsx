@@ -39,11 +39,11 @@ export default function Resume() {
 
   return (
     <Window
-      windowWidth="70vw"
+    windowWidth={isMobile ? "100vw" : "70vw"}
       windowHeight="70vh"
       id={windows.resumeWindow.id}
       title="Resume"
-      defLeft={isMobile ? "5vw" : "15vw"}
+      defLeft={isMobile ? "0" : "15vw"}
     >
       <div className="flex justify-left items-center  p-2 gap-3 shadow-md bg-[#00669D] absolute z-10  justify-self-center text-third">
         <Tippy content="Toggle Bold" theme="pink_theme">
