@@ -209,7 +209,7 @@ const Snake: React.FC = () => {
       defLeft={isMobile ? "0" : "15vw"}
     >
       <div
-        className="gameContainer bg-main h-full w-full flex flex-col-reverse justify-end items-center gap-16 lg:gap-8 lg:flex-row lg:justify-center"
+        className="gameContainer bg-main h-full w-full flex flex-col-reverse justify-end items-center gap-10 lg:gap-8 lg:flex-row lg:justify-center"
         onKeyDown={(e) => changeDirection(e)}
         tabIndex={0}
       >
@@ -228,25 +228,25 @@ const Snake: React.FC = () => {
           <div className="grid grid-template-rows-[auto_auto_auto] grid-template-cols-[auto_auto_auto] gap-1 ">
             <button
               onClick={() => handleTouchInput("up")}
-              className="  row-start-1 col-start-2 border border-green-500 text-green-500 p-2 focus:bg-green-500 hover:text-white"
+              className=" row-start-1 col-start-2 border border-green-500 text-green-500 p-3 focus:bg-green-500 hover:text-white"
             >
               <FaArrowUp />
             </button>
             <button
               onClick={() => handleTouchInput("left")}
-              className="row-start-2 col-start-1 border border-green-500 text-green-500 p-2 focus:bg-green-500 hover:text-white"
+              className="row-start-2 col-start-1 border border-green-500 text-green-500 p-3 focus:bg-green-500 hover:text-white"
             >
               <FaArrowLeft />
             </button>
             <button
               onClick={() => handleTouchInput("down")}
-              className="row-start-2 col-start-2 border border-green-500 text-green-500 p-2 focus:bg-green-500 hover:text-white"
+              className="row-start-2 col-start-2 border border-green-500 text-green-500 p-3 focus:bg-green-500 hover:text-white"
             >
               <FaArrowDown />
             </button>
             <button
               onClick={() => handleTouchInput("right")}
-              className="row-start-2 col-start-3 border border-green-500 text-green-500 p-2 focus:bg-green-500 hover:text-white"
+              className="row-start-2 col-start-3 border border-green-500 text-green-500 p-3 focus:bg-green-500 hover:text-white"
             >
               <FaArrowRight />
             </button>
