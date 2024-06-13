@@ -83,7 +83,7 @@ export default function Resume() {
 
         <Tippy content="Downland as PDF" theme="pink_theme">
           <a
-            href="https://drive.google.com/file/d/1V82WN52FqDw6zLtsECVlF4zdzoTwSAA8/view"
+            href="https://drive.google.com/file/d/1Mig0j1e-pB-pKTUpdjVDC4DNOUVu7i_n/view?usp=sharing"
             download="CagatayErsoy_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
@@ -164,7 +164,11 @@ export default function Resume() {
 
             <p className="text-lg ">
               Tento (Freelancer) – Front End Developer (Remote) -{" "}
-              <span className="text-sm">July 2023 - October 2023</span>
+              <span className="text-sm">July 2023 - January 2023</span>
+            </p>
+            <p className="text-lg ">
+              Reqora(Startup) – Front End Developer (Remote) -{" "}
+              <span className="text-sm">March 2024- Present</span>
             </p>
           </div>
 

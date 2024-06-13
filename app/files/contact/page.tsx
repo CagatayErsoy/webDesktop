@@ -38,7 +38,7 @@ export default function Contact() {
       windowHeight="60vh"
       id={windows.contactWindow.id}
       title="Mail"
-      defLeft={isMobile?"0":"25vw"}
+      defLeft={isMobile?"0":"15vw"}
     >
       <section className=" bg-main  flex flex-col justify-center text-main h-full">
         <form
